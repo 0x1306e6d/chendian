@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { changeValue } from '../../action/value';
 
-import InputPreview from './InputPreview';
+import InputLength from './InputLength';
 
 class Input extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Input extends React.Component {
           value={value}
           placeholder="input hex string"
           onChange={this.onChange} />
-        <InputPreview value={value} />
+        <InputLength value={value} />
       </div>
     );
   }

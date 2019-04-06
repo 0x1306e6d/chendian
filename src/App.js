@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Container from './component/Container';
+import Input from './component/input/Input';
 import Navigation from './component/navigation/Navigation';
 
 class App extends React.Component {
@@ -8,8 +9,8 @@ class App extends React.Component {
     return (
       <div>
         <Navigation />
-        <Container>
-          <h1>chendian</h1>
+        <Container className="pt-3 pb-5">
+          <Input />
         </Container>
       </div>
     );

@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Navigation extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-light bg-light">
-        <Container>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Container className="pt-3 pb-1">
           <NavigationBrand href="/">
             chendian
           </NavigationBrand>

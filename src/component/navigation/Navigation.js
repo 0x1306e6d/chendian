@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Container from '../Container';
+import NavigationBrand from './NavigationBrand';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,7 +10,9 @@ class Navigation extends React.Component {
     return (
       <nav className="navbar navbar-light bg-light">
         <Container>
-          <span className="navbar-brand">chendian</span>
+          <NavigationBrand href="/">
+            chendian
+          </NavigationBrand>
           <div className="navbar-nav ml-auto">
             <a className="nav-item nav-link"
               href="https://github.com/ghkim3221/chendian">GitHub</a>

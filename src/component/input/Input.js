@@ -2,52 +2,47 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import BaseSelector from './BaseSelector';
-import DecimalInput from './DecimalInput';
-import HexadecimalInput from './HexadecimalInput';
+import { changeValue } from '../../action/value';
+
 import InputPreview from './InputPreview';
-import OctalInput from './OctalInput';
 
 class Input extends React.Component {
   constructor(props) {
     super(props);
 
-    this.renderInput = this.renderInput.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  renderInput() {
-    switch (this.props.base) {
-      case 8:
-        return <OctalInput />
-      case 10:
-        return <DecimalInput />
-      case 16:
-        return <HexadecimalInput />
-      default:
-        return <DecimalInput />
+  onChange(event) {
+    const { value } = event.target;
+
+    if (/[a-fA-F0-9]*/.test(value)) {
+      this.props.change(value);
     }
   }
 
   render() {
+    const { value } = this.props;
     return (
-      <div className="row">
-        <div className="col-12">
-          <div className={classNames('input-group', this.props.className)}>
-            <BaseSelector />
-            {this.renderInput()}
-          </div>
-        </div>
-        <div className="col-12">
-          <InputPreview value={this.props.value} />
-        </div>
+      <div>
+        <input
+          className={classNames('form-control', 'px-3', 'py-5')}
+          type="text"
+          value={value}
+          placeholder="input hex string"
+          onChange={this.onChange} />
+        <InputPreview value={value} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  base: state.base,
   value: state.value
 });
 
-export default connect(mapStateToProps)(Input);
+const mapDispatchToProps = (dispatch) => ({
+  change: (value) => dispatch(changeValue(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

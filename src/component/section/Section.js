@@ -8,7 +8,7 @@ import SectionHeader from './SectionHeader';
 class Section extends React.Component {
   render() {
     return (
-      <Container className={classNames('pt-5', 'pb-3')} fluid>
+      <Container className={classNames('pt-5', 'pb-3', 'px-0')} fluid>
         <SectionHeader title={this.props.title} />
         {this.props.children}
       </Container>

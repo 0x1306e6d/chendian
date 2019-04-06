@@ -16,10 +16,6 @@ class BaseSelector extends React.Component {
         </button>
         <div className="dropdown-menu">
           <button type="button" className="dropdown-item"
-            onClick={() => select(2)}>
-            Binary
-          </button>
-          <button type="button" className="dropdown-item"
             onClick={() => select(8)}>
             Octal
           </button>

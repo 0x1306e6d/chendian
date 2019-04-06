@@ -9,21 +9,28 @@ class BaseSelector extends React.Component {
 
     return (
       <div className="input-group-prepend">
-        <button type="button"
+        <button
+          type="button"
           className="btn btn-outline-secondary dropdown-toggle"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {base}
         </button>
         <div className="dropdown-menu">
-          <button type="button" className="dropdown-item"
+          <button
+            type="button"
+            className="dropdown-item"
             onClick={() => select(8)}>
             Octal
           </button>
-          <button type="button" className="dropdown-item"
+          <button
+            type="button"
+            className="dropdown-item"
             onClick={() => select(10)}>
             Decimal
           </button>
-          <button type="button" className="dropdown-item"
+          <button
+            type="button"
+            className="dropdown-item"
             onClick={() => select(16)}>
             Hexadecimal
           </button>

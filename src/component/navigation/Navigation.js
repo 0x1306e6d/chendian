@@ -5,8 +5,6 @@ import NavigationBrand from './NavigationBrand';
 import NavigationMenu from './NavigationMenu';
 import NavigationMenuItem from './NavigationMenuItem';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 class Navigation extends React.Component {
   render() {
     return (

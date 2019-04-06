@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 class NavigationMenuItem extends React.Component {
   render() {
     return (

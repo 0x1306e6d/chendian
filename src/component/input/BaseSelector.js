@@ -1,43 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { selectBase } from '../../action/base';
 
 class BaseSelector extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.select = this.select.bind(this);
-
-    this.state = { base: 10 };
-  }
-
-  select(base) {
-    if (base === 2 || base === 8 || base === 10 || base === 16) {
-      this.setState({ base: base });
-    }
-  }
-
   render() {
+    const { base, select } = this.props;
+
     return (
       <div className="input-group-prepend">
         <button type="button"
           className="btn btn-outline-secondary dropdown-toggle"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {this.state.base}
+          {base}
         </button>
         <div className="dropdown-menu">
           <button type="button" className="dropdown-item"
-            onClick={() => this.select(2)}>
+            onClick={() => select(2)}>
             Binary
           </button>
           <button type="button" className="dropdown-item"
-            onClick={() => this.select(8)}>
+            onClick={() => select(8)}>
             Octal
           </button>
           <button type="button" className="dropdown-item"
-            onClick={() => this.select(10)}>
+            onClick={() => select(10)}>
             Decimal
           </button>
           <button type="button" className="dropdown-item"
-            onClick={() => this.select(16)}>
+            onClick={() => select(16)}>
             Hexadecimal
           </button>
         </div>
@@ -46,4 +37,12 @@ class BaseSelector extends React.Component {
   }
 }
 
-export default BaseSelector;
+const mapStateToProps = (state) => ({
+  base: state.base
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  select: (base) => dispatch(selectBase(base))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BaseSelector);

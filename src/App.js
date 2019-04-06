@@ -1,12 +1,13 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Container from './component/Container';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="container">
+      <Container>
         <h1>chendian</h1>
-      </div>
+      </Container>
     );
   }
 }

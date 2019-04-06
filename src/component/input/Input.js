@@ -16,7 +16,7 @@ class Input extends React.Component {
   onChange(event) {
     const { value } = event.target;
 
-    if (/[a-fA-F0-9]*/.test(value)) {
+    if (/^[a-fA-F0-9]*$/.test(value)) {
       this.props.change(value);
     }
   }

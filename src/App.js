@@ -10,7 +10,11 @@ class App extends React.Component {
       <div>
         <Navigation />
         <Container className="pt-3 pb-5">
-          <Input />
+          <div className="row">
+            <div className="col-12">
+              <Input />
+            </div>
+          </div>
         </Container>
       </div>
     );

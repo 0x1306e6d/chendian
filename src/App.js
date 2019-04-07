@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Container from './component/Container';
-import Input from './component/input/Input';
+import HexStringInput from './component/input/HexStringInput';
 import Navigation from './component/navigation/Navigation';
 import DoubleSection from './component/sections/DoubleSection';
 import DWORDSection from './component/sections/DWORDSection';
@@ -20,7 +20,7 @@ class App extends React.Component {
         <Container className="pt-3 pb-5">
           <div className="row">
             <div className="col-12">
-              <Input />
+              <HexStringInput />
             </div>
             <div className="col-12">
               <QWORDSection value={value} />

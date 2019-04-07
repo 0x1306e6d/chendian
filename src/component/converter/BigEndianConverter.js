@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import HexList from '../hex/HexList';
+
 class BigEndianConverter extends React.Component {
   renderOrder() {
     switch (this.props.word) {
@@ -17,6 +19,13 @@ class BigEndianConverter extends React.Component {
   }
 
   render() {
+    const { word, value } = this.props;
+
+    let hexList = [];
+    for (let i = 0; i < value.length; i += word) {
+      hexList.push(value.slice(i, i + word));
+    }
+
     return (
       <div className={classNames('card')}>
         <div className={classNames('card-body')}>
@@ -26,9 +35,7 @@ class BigEndianConverter extends React.Component {
           <h6 className={classNames('card-subtitle', 'text-muted', 'mb-3')}>
             {this.renderOrder()}
           </h6>
-          <p className={classNames('card-text')}>
-            {this.props.value}
-          </p>
+          <HexList word={word} hexList={hexList} />
         </div>
       </div>
     );

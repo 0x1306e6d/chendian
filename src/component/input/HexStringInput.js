@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { changeValue } from '../../action/value';
+import { changeInput } from '../../action/input';
 
 import HexStringInputLength from './HexStringInputLength';
 
@@ -50,28 +50,28 @@ class HexStringInput extends React.Component {
   }
 
   render() {
-    const { value } = this.props;
+    const { input } = this.props;
 
     return (
       <div>
         <input
           className={classNames('form-control', 'px-3', 'py-5')}
           type="text"
-          value={value}
+          value={input}
           placeholder="input hex string"
           onChange={this.handleChange} />
-        <HexStringInputLength hexString={value} />
+        <HexStringInputLength hexString={input} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  value: state.value
+  input: state.input
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  change: (value) => dispatch(changeValue(value))
+  change: (input) => dispatch(changeInput(input))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HexStringInput);

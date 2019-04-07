@@ -12,7 +12,7 @@ import WORDSection from './component/sections/WORDSection';
 
 class App extends React.Component {
   render() {
-    const { value } = this.props;
+    const { input } = this.props;
 
     return (
       <div>
@@ -23,19 +23,19 @@ class App extends React.Component {
               <HexStringInput />
             </div>
             <div className="col-12">
-              <QWORDSection value={value} />
+              <QWORDSection value={input} />
             </div>
             <div className="col-12">
-              <DWORDSection value={value} />
+              <DWORDSection value={input} />
             </div>
             <div className="col-12">
-              <WORDSection value={value} />
+              <WORDSection value={input} />
             </div>
             <div className="col-12">
-              <DoubleSection value={value} />
+              <DoubleSection value={input} />
             </div>
             <div className="col-12">
-              <FloatSection value={value} />
+              <FloatSection value={input} />
             </div>
           </div>
         </Container>
@@ -45,7 +45,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  value: state.value
+  input: state.input
 });
 
 export default connect(mapStateToProps)(App);

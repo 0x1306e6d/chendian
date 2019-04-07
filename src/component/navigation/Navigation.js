@@ -1,27 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Container from '../Container';
+import withStyles from '@material-ui/core/styles/withStyles';
+import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+
+import GitHubIcon from './GitHubIcon';
 import NavigationBrand from './NavigationBrand';
-import NavigationMenu from './NavigationMenu';
-import NavigationMenuItem from './NavigationMenuItem';
 
-class Navigation extends React.Component {
-  render() {
-    return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Container className="pt-3 pb-1">
-          <NavigationBrand href="/">
-            chendian
-          </NavigationBrand>
-          <NavigationMenu>
-            <NavigationMenuItem href="https://github.com/ghkim3221/chendian">
-              GitHub
-            </NavigationMenuItem>
-          </NavigationMenu>
-        </Container>
-      </nav>
-    );
-  }
+const styles = (theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  icon: {
+    marginRight: theme.spacing.unit,
+  },
+});
+
+function Navigation(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <NavigationBrand />
+          <div className={classes.grow} />
+          <IconButton
+            color="inherit"
+            component="a"
+            href="https://github.com/ghkim3221/chendian">
+            <GitHubIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
-export default Navigation;
+Navigation.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Navigation);

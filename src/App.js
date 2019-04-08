@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Container from './component/Container';
 import HexStringInput from './component/input/HexStringInput';
-import Navigation from './component/navigation/Navigation';
+import Navigation from './component/Navigation';
 import DoubleSection from './component/sections/DoubleSection';
 import DWORDSection from './component/sections/DWORDSection';
 import FloatSection from './component/sections/FloatSection';

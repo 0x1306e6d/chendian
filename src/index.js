@@ -8,12 +8,6 @@ import App from './App';
 import reducer from './reducer';
 import * as serviceWorker from './serviceWorker';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import 'popper.js/dist/umd/popper.min.js';
-import 'jquery/dist/jquery.slim.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
 const store = createStore(reducer);
 
 ReactDOM.render(

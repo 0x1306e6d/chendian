@@ -5,9 +5,13 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 
+import BigEndianDouble from './component/BigEndianDouble';
+import BigEndianFloat from './component/BigEndianFloat';
 import BigEndianInteger from './component/BigEndianInteger';
 import EndianConverter from './component/EndianConverter';
 import HexStringInput from './component/HexStringInput';
+import LittleEndianDouble from './component/LittleEndianDouble';
+import LittleEndianFloat from './component/LittleEndianFloat';
 import LittleEndianInteger from './component/LittleEndianInteger';
 import Navigation from './component/Navigation';
 import Section from './component/Section';
@@ -93,10 +97,16 @@ class App extends React.Component {
           </Grid>
           <Grid xs={12} item>
             <Section title="double">
+              <EndianConverter
+                bigEndian={<BigEndianDouble />}
+                littleEndian={<LittleEndianDouble />} />
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="float">
+              <EndianConverter
+                bigEndian={<BigEndianFloat />}
+                littleEndian={<LittleEndianFloat />} />
             </Section>
           </Grid>
         </Grid>

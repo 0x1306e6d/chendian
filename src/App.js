@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import Container from './component/Container';
 import HexStringInput from './component/HexStringInput';
 import Navigation from './component/Navigation';
-import DoubleSection from './component/sections/DoubleSection';
-import DWORDSection from './component/sections/DWORDSection';
-import FloatSection from './component/sections/FloatSection';
-import QWORDSection from './component/sections/QWORDSection';
-import WORDSection from './component/sections/WORDSection';
+import Section from './component/Section';
+
+import BigEndianConverter from './component/converter/BigEndianConverter';
+import LittleEndianConverter from './component/converter/LittleEndianConverter';
 
 class App extends React.Component {
   render() {
@@ -23,19 +23,74 @@ class App extends React.Component {
               <HexStringInput />
             </div>
             <div className="col-12">
-              <QWORDSection value={input} />
+              <Section title="64 bit integer">
+                <div className={classNames('container-fluid')}>
+                  <div className={classNames('row')}>
+                    <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
+                      <BigEndianConverter word={8} value={input} />
+                    </div>
+                    <div className={classNames('col-12', 'col-sm-6')}>
+                      <LittleEndianConverter word={8} value={input} />
+                    </div>
+                  </div>
+                </div>
+              </Section>
             </div>
             <div className="col-12">
-              <DWORDSection value={input} />
+              <Section title="32 bit integer">
+                <div className={classNames('container-fluid')}>
+                  <div className={classNames('row')}>
+                    <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
+                      <BigEndianConverter word={8} value={input} />
+                    </div>
+                    <div className={classNames('col-12', 'col-sm-6')}>
+                      <LittleEndianConverter word={8} value={input} />
+                    </div>
+                  </div>
+                </div>
+              </Section>
             </div>
             <div className="col-12">
-              <WORDSection value={input} />
+              <Section title="16 bit integer">
+                <div className={classNames('container-fluid')}>
+                  <div className={classNames('row')}>
+                    <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
+                      <BigEndianConverter word={8} value={input} />
+                    </div>
+                    <div className={classNames('col-12', 'col-sm-6')}>
+                      <LittleEndianConverter word={8} value={input} />
+                    </div>
+                  </div>
+                </div>
+              </Section>
             </div>
             <div className="col-12">
-              <DoubleSection value={input} />
+              <Section title="double">
+                <div className={classNames('container-fluid')}>
+                  <div className={classNames('row')}>
+                    <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
+                      <BigEndianConverter word={8} value={input} />
+                    </div>
+                    <div className={classNames('col-12', 'col-sm-6')}>
+                      <LittleEndianConverter word={8} value={input} />
+                    </div>
+                  </div>
+                </div>
+              </Section>
             </div>
             <div className="col-12">
-              <FloatSection value={input} />
+              <Section title="float">
+                <div className={classNames('container-fluid')}>
+                  <div className={classNames('row')}>
+                    <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
+                      <BigEndianConverter word={8} value={input} />
+                    </div>
+                    <div className={classNames('col-12', 'col-sm-6')}>
+                      <LittleEndianConverter word={8} value={input} />
+                    </div>
+                  </div>
+                </div>
+              </Section>
             </div>
           </div>
         </Container>

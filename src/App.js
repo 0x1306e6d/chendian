@@ -1,25 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 
+import BigEndianInteger from './component/BigEndianInteger';
+import EndianConverter from './component/EndianConverter';
 import HexStringInput from './component/HexStringInput';
+import LittleEndianInteger from './component/LittleEndianInteger';
 import Navigation from './component/Navigation';
 import Section from './component/Section';
-
-import BigEndianConverter from './component/converter/BigEndianConverter';
-import LittleEndianConverter from './component/converter/LittleEndianConverter';
 
 const styles = (theme) => ({
   layout: {
     width: 'auto',
     paddingTop: theme.spacing.unit * 4,
     paddingBottom: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
     [theme.breakpoints.up('sm')]: {
       width: '540px',
       marginLeft: 'auto',
@@ -47,6 +46,11 @@ class App extends React.Component {
   render() {
     const { classes, input } = this.props;
 
+    let hexList = [];
+    for (let i = 0; i < input.length; i += 8) {
+      hexList.push(input.slice(i, i + 8));
+    }
+
     return (
       <div>
         <Navigation />
@@ -56,72 +60,43 @@ class App extends React.Component {
           </Grid>
           <Grid xs={12} item>
             <Section title="64 bit integer">
-              <div className={classNames('container-fluid')}>
-                <div className={classNames('row')}>
-                  <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
-                    <BigEndianConverter word={8} value={input} />
-                  </div>
-                  <div className={classNames('col-12', 'col-sm-6')}>
-                    <LittleEndianConverter word={8} value={input} />
-                  </div>
-                </div>
-              </div>
+              <EndianConverter
+                bigEndian={
+                  <BigEndianInteger size={64} hexString={input} />
+                }
+                littleEndian={
+                  <LittleEndianInteger size={64} hexString={input} />
+                } />
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="32 bit integer">
-              <div className={classNames('container-fluid')}>
-                <div className={classNames('row')}>
-                  <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
-                    <BigEndianConverter word={8} value={input} />
-                  </div>
-                  <div className={classNames('col-12', 'col-sm-6')}>
-                    <LittleEndianConverter word={8} value={input} />
-                  </div>
-                </div>
-              </div>
+              <EndianConverter
+                bigEndian={
+                  <BigEndianInteger size={32} hexString={input} />
+                }
+                littleEndian={
+                  <LittleEndianInteger size={32} hexString={input} />
+                } />
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="16 bit integer">
-              <div className={classNames('container-fluid')}>
-                <div className={classNames('row')}>
-                  <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
-                    <BigEndianConverter word={8} value={input} />
-                  </div>
-                  <div className={classNames('col-12', 'col-sm-6')}>
-                    <LittleEndianConverter word={8} value={input} />
-                  </div>
-                </div>
-              </div>
+              <EndianConverter
+                bigEndian={
+                  <BigEndianInteger size={16} hexString={input} />
+                }
+                littleEndian={
+                  <LittleEndianInteger size={16} hexString={input} />
+                } />
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="double">
-              <div className={classNames('container-fluid')}>
-                <div className={classNames('row')}>
-                  <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
-                    <BigEndianConverter word={8} value={input} />
-                  </div>
-                  <div className={classNames('col-12', 'col-sm-6')}>
-                    <LittleEndianConverter word={8} value={input} />
-                  </div>
-                </div>
-              </div>
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="float">
-              <div className={classNames('container-fluid')}>
-                <div className={classNames('row')}>
-                  <div className={classNames('col-12', 'col-sm-6', 'mb-3', 'mb-sm-0')}>
-                    <BigEndianConverter word={8} value={input} />
-                  </div>
-                  <div className={classNames('col-12', 'col-sm-6')}>
-                    <LittleEndianConverter word={8} value={input} />
-                  </div>
-                </div>
-              </div>
             </Section>
           </Grid>
         </Grid>

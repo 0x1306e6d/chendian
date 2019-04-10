@@ -30,10 +30,17 @@ class HexStringInput extends React.Component {
       // convert to uppercase
       hexString = hexString.toUpperCase();
 
+      let byteArray = [];
+      for (let i = 0; i < hexString.length; i += 2) {
+        const hex = hexString.slice(i, i + 2);
+        const byte = parseInt(hex, 16);
+        byteArray.push(byte);
+      }
+
       if (error === true) {
         this.setState({ error: false });
       }
-      this.props.change(hexString);
+      this.props.change(byteArray);
     } else {
       if (error === false) {
         this.setState({ error: true });

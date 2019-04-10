@@ -50,11 +50,6 @@ class App extends React.Component {
   render() {
     const { classes, input } = this.props;
 
-    let hexList = [];
-    for (let i = 0; i < input.length; i += 8) {
-      hexList.push(input.slice(i, i + 8));
-    }
-
     return (
       <div>
         <Navigation />
@@ -66,10 +61,10 @@ class App extends React.Component {
             <Section title="64 bit integer">
               <EndianConverter
                 bigEndian={
-                  <BigEndianInteger size={64} hexString={input} />
+                  <BigEndianInteger byteArray={input} size={64} />
                 }
                 littleEndian={
-                  <LittleEndianInteger size={64} hexString={input} />
+                  <LittleEndianInteger byteArray={input} size={64} />
                 } />
             </Section>
           </Grid>
@@ -77,10 +72,10 @@ class App extends React.Component {
             <Section title="32 bit integer">
               <EndianConverter
                 bigEndian={
-                  <BigEndianInteger size={32} hexString={input} />
+                  <BigEndianInteger byteArray={input} size={32} />
                 }
                 littleEndian={
-                  <LittleEndianInteger size={32} hexString={input} />
+                  <LittleEndianInteger byteArray={input} size={32} />
                 } />
             </Section>
           </Grid>
@@ -88,10 +83,10 @@ class App extends React.Component {
             <Section title="16 bit integer">
               <EndianConverter
                 bigEndian={
-                  <BigEndianInteger size={16} hexString={input} />
+                  <BigEndianInteger byteArray={input} size={16} />
                 }
                 littleEndian={
-                  <LittleEndianInteger size={16} hexString={input} />
+                  <LittleEndianInteger byteArray={input} size={16} />
                 } />
             </Section>
           </Grid>

@@ -6,6 +6,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
+import hexify from '../../util/hexify';
+
 class BigEndianInteger extends React.Component {
   constructor(props) {
     super(props);
@@ -29,13 +31,18 @@ class BigEndianInteger extends React.Component {
   }
 
   render() {
-    const { size, hexString } = this.props;
-    const wordSize = ((size / 8) * 2);
+    const { byteArray, size } = this.props;
+    const wordSize = (size / 8);
 
-    // TODO(@ghkim3221): big endian
     let wordArray = [];
-    for (let i = 0; i < hexString.length; i += wordSize) {
-      wordArray.push(hexString.slice(i, i + wordSize));
+    for (let i = 0; i < byteArray.length; i += wordSize) {
+      let word = new Array(wordSize);
+
+      word.fill(0);
+      byteArray.slice(i, i + wordSize).forEach((byte, index) => {
+        word[index] = byte;
+      });
+      wordArray.push(word);
     }
 
     return (
@@ -53,7 +60,7 @@ class BigEndianInteger extends React.Component {
               <Grid spacing={16} container>
                 <Grid xs={12} item>
                   <Typography variant="subtitle1">
-                    {word.toString(16)}
+                    {hexify(word)}
                   </Typography>
                 </Grid>
                 <Grid xs={6} item>
@@ -84,8 +91,8 @@ class BigEndianInteger extends React.Component {
 }
 
 BigEndianInteger.propTypes = {
+  byteArray: PropTypes.array.isRequired,
   size: PropTypes.oneOf([16, 32, 64]).isRequired,
-  hexString: PropTypes.string.isRequired,
 };
 
 export default BigEndianInteger;

@@ -7,6 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
 import hexify from '../../util/hexify';
+import int from '../../util/int';
+import uint from '../../util/uint';
 
 class LittleEndianInteger extends React.Component {
   constructor(props) {
@@ -68,8 +70,7 @@ class LittleEndianInteger extends React.Component {
                     Signed
                   </Typography>
                   <Typography variant="body1">
-                    {/* TODO(@ghkim3221): signed integer */}
-                    {parseInt(word, 16).toLocaleString()}
+                    {int(word, size)}
                   </Typography>
                 </Grid>
                 <Grid xs={6} item>
@@ -77,8 +78,7 @@ class LittleEndianInteger extends React.Component {
                     Unsigned
                   </Typography>
                   <Typography variant="body1">
-                    {/* TODO(@ghkim3221): unsigned integer */}
-                    {parseInt(word, 16).toLocaleString()}
+                    {uint(word, size)}
                   </Typography>
                 </Grid>
               </Grid>

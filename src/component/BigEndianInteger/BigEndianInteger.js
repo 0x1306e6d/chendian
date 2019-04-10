@@ -34,6 +34,7 @@ class BigEndianInteger extends React.Component {
 
   render() {
     const { byteArray, size } = this.props;
+    const is64Bit = (size === 64);
     const wordSize = (size / 8);
 
     let wordArray = [];
@@ -65,7 +66,7 @@ class BigEndianInteger extends React.Component {
                     {hexify(word)}
                   </Typography>
                 </Grid>
-                <Grid xs={6} item>
+                <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
                   <Typography variant="overline">
                     Signed
                   </Typography>
@@ -73,7 +74,7 @@ class BigEndianInteger extends React.Component {
                     {int(word, size)}
                   </Typography>
                 </Grid>
-                <Grid xs={6} item>
+                <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
                   <Typography variant="overline">
                     Unsigned
                   </Typography>

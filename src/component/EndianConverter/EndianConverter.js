@@ -8,10 +8,10 @@ function EndianConverter(props) {
 
   return (
     <Grid spacing={16} container>
-      <Grid xs={12} sm={6} item>
+      <Grid xs={12} lg={6} item>
         {bigEndian}
       </Grid>
-      <Grid xs={12} sm={6} item>
+      <Grid xs={12} lg={6} item>
         {littleEndian}
       </Grid>
     </Grid>

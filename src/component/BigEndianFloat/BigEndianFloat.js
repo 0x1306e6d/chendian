@@ -8,12 +8,37 @@ import Typography from '@material-ui/core/Typography';
 
 import hexify from '../../util/hexify';
 
+const endianTest = new Uint16Array(1);
+const endianTestBuffer = new Uint8Array(endianTest.buffer);
+endianTestBuffer[0] = 0xFF;
+endianTestBuffer[1] = 0x00;
+const isBigEndian = (endianTest[0] === 0x00FF);
+
+function readFloatForwards(numberArray) {
+  const float32Array = new Float32Array(1);
+  const uint8Array = new Uint8Array(float32Array.buffer);
+
+  uint8Array[0] = numberArray[0];
+  uint8Array[1] = numberArray[1];
+  uint8Array[2] = numberArray[2];
+  uint8Array[3] = numberArray[3];
+  return float32Array[0];
+}
+
+function readFloatBackwards(numberArray) {
+  const float32Array = new Float32Array(1);
+  const uint8Array = new Uint8Array(float32Array.buffer);
+
+  uint8Array[3] = numberArray[0];
+  uint8Array[2] = numberArray[1];
+  uint8Array[1] = numberArray[2];
+  uint8Array[0] = numberArray[3];
+  return float32Array[0];
+}
+
 function BigEndianFloat(props) {
   const { byteArray } = props;
   const wordSize = 4;
-
-  const float32Array = new Float32Array(Math.ceil(byteArray.length / wordSize));
-  const uint8Array = new Uint8Array(float32Array.buffer);
 
   let wordArray = [];
   for (let i = 0; i < byteArray.length; i += wordSize) {
@@ -22,9 +47,6 @@ function BigEndianFloat(props) {
 
     byteArray.slice(i, i + wordSize).forEach((byte, index) => {
       word[index] = byte;
-    });
-    word.forEach((byte, index) => {
-      uint8Array[i + index] = byte;
     });
 
     wordArray.push(word);
@@ -49,7 +71,7 @@ function BigEndianFloat(props) {
               </Grid>
               <Grid xs={12} item>
                 <Typography variant="body1">
-                  {float32Array[index]}
+                  {isBigEndian ? readFloatBackwards(word) : readFloatForwards(word)}
                 </Typography>
               </Grid>
             </Grid>

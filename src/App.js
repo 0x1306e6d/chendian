@@ -93,8 +93,8 @@ class App extends React.Component {
           <Grid xs={12} item>
             <Section title="double">
               <EndianConverter
-                bigEndian={<BigEndianDouble />}
-                littleEndian={<LittleEndianDouble />} />
+                bigEndian={<BigEndianDouble byteArray={input} />}
+                littleEndian={<LittleEndianDouble byteArray={input} />} />
             </Section>
           </Grid>
           <Grid xs={12} item>

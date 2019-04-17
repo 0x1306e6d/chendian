@@ -6,7 +6,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
-import hexify from '../../util/hexify';
+import HexStringTypography from '../HexStringTypography';
+
 import int from '../../util/int';
 import uint from '../../util/uint';
 
@@ -62,9 +63,7 @@ class BigEndianInteger extends React.Component {
             <ListItem key={index} divider>
               <Grid spacing={16} container>
                 <Grid xs={12} item>
-                  <Typography variant="subtitle1">
-                    {hexify(word)}
-                  </Typography>
+                  <HexStringTypography array={word} variant="subtitle1" />
                 </Grid>
                 <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
                   <Typography variant="overline">

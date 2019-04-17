@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import withStyles from '@material-ui/core/styles/withStyles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import BigEndianDouble from './component/BigEndianDouble';
 import BigEndianFloat from './component/BigEndianFloat';
@@ -15,6 +18,19 @@ import LittleEndianFloat from './component/LittleEndianFloat';
 import LittleEndianInteger from './component/LittleEndianInteger';
 import Navigation from './component/Navigation';
 import Section from './component/Section';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#263238',
+      dark: '#000A12',
+      light: '#4F5B62',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 const styles = (theme) => ({
   layout: {
@@ -51,7 +67,8 @@ class App extends React.Component {
     const { classes, input } = this.props;
 
     return (
-      <div>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <Navigation />
         <Grid className={classes.layout} spacing={16} container>
           <Grid xs={12} item>
@@ -105,7 +122,7 @@ class App extends React.Component {
             </Section>
           </Grid>
         </Grid>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

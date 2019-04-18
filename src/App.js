@@ -12,6 +12,7 @@ import BigEndianDouble from './component/BigEndianDouble';
 import BigEndianFloat from './component/BigEndianFloat';
 import BigEndianInteger from './component/BigEndianInteger';
 import EndianConverter from './component/EndianConverter';
+import Footer from './component/Footer';
 import HexStringInput from './component/HexStringInput';
 import LittleEndianDouble from './component/LittleEndianDouble';
 import LittleEndianFloat from './component/LittleEndianFloat';
@@ -122,6 +123,7 @@ class App extends React.Component {
             </Section>
           </Grid>
         </Grid>
+        <Footer />
       </MuiThemeProvider>
     );
   }

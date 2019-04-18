@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
 import ByteOrderTypography from '../ByteOrderTypography';
+import EndiannessTypography from '../EndiannessTypography';
 import HexStringTypography from '../HexStringTypography';
 
 import int from '../../util/int';
@@ -30,9 +31,7 @@ function LittleEndianInteger(props) {
 
   return (
     <React.Fragment>
-      <Typography color="textPrimary" variant="h5">
-        Little Endian
-      </Typography>
+      <EndiannessTypography endianness="little" />
       <ByteOrderTypography byteLength={wordSize} endianness="little" />
       <List>
         {/* TODO(@ghkim3221): modularization */}

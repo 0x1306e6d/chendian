@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
 import ByteOrderTypography from '../ByteOrderTypography';
+import EndiannessTypography from '../EndiannessTypography';
 import HexStringTypography from '../HexStringTypography';
 
 const endianTest = new Uint16Array(1);
@@ -63,9 +64,7 @@ function LittleEndianDouble(props) {
 
   return (
     <React.Fragment>
-      <Typography color="textPrimary" variant="h5">
-        Little Endian
-      </Typography>
+      <EndiannessTypography endianness="little" />
       <ByteOrderTypography byteLength={8} endianness="little" />
       <List>
         {wordArray.map((word, index) => (

@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
 import ByteOrderTypography from '../ByteOrderTypography';
+import EndiannessTypography from '../EndiannessTypography';
 import HexStringTypography from '../HexStringTypography';
 
 const endianTest = new Uint16Array(1);
@@ -55,9 +56,7 @@ function BigEndianFloat(props) {
 
   return (
     <React.Fragment>
-      <Typography color="textPrimary" variant="h5">
-        Big Endian
-      </Typography>
+      <EndiannessTypography endianness="big" />
       <ByteOrderTypography byteLength={4} endianness="big" />
       <List>
         {wordArray.map((word, index) => (

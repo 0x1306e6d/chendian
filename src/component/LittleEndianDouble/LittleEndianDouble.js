@@ -71,7 +71,7 @@ function LittleEndianDouble(props) {
           <ListItem key={index} divider>
             <Grid spacing={16} container>
               <Grid xs={12} item>
-                <HexStringTypography array={word} variant="subtitle1" />
+                <HexStringTypography array={word} />
               </Grid>
               <Grid xs={12} item>
                 <Typography variant="body1">

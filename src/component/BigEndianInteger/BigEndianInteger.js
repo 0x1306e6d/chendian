@@ -39,7 +39,7 @@ function BigEndianInteger(props) {
           <ListItem key={index} divider>
             <Grid spacing={16} container>
               <Grid xs={12} item>
-                <HexStringTypography array={word} variant="subtitle1" />
+                <HexStringTypography array={word} />
               </Grid>
               <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
                 <Typography variant="overline">

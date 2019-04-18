@@ -8,10 +8,10 @@ function hexify(b) {
 }
 
 function HexStringTypography(props) {
-  const { array, ...other } = props;
+  const { array } = props;
 
   return (
-    <Typography {...other}>
+    <Typography variant="subtitle1">
       {array.map(hexify).join(' ')}
     </Typography>
   );

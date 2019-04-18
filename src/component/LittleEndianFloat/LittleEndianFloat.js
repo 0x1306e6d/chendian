@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
+import ByteOrderTypography from '../ByteOrderTypography';
 import HexStringTypography from '../HexStringTypography';
 
 const endianTest = new Uint16Array(1);
@@ -57,9 +58,7 @@ function LittleEndianFloat(props) {
       <Typography color="textPrimary" variant="h5">
         Little Endian
       </Typography>
-      <Typography color="textSecondary" variant="h6">
-        CD AB
-      </Typography>
+      <ByteOrderTypography byteLength={4} endianness="little" />
       <List>
         {wordArray.map((word, index) => (
           <ListItem key={index} divider>

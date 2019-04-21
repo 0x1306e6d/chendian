@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Typography from '@material-ui/core/Typography';
 
 import ByteOrderTypography from '../ByteOrderTypography';
 import EndiannessTypography from '../EndiannessTypography';
 import HexStringTypography from '../HexStringTypography';
-
-import int from '../../util/int';
-import uint from '../../util/uint';
+import IntegerTypography from '../IntegerTypography';
 
 function BigEndianInteger(props) {
   const { byteArray, size } = props;
@@ -42,20 +39,16 @@ function BigEndianInteger(props) {
                 <HexStringTypography array={word} />
               </Grid>
               <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-                <Typography variant="overline">
-                  Signed
-                  </Typography>
-                <Typography variant="body1">
-                  {int(word, size)}
-                </Typography>
+                <IntegerTypography
+                  array={word}
+                  byteLength={size / 8}
+                  signed={true} />
               </Grid>
               <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-                <Typography variant="overline">
-                  Unsigned
-                  </Typography>
-                <Typography variant="body1">
-                  {uint(word, size)}
-                </Typography>
+                <IntegerTypography
+                  array={word}
+                  byteLength={size / 8}
+                  signed={false} />
               </Grid>
             </Grid>
           </ListItem>

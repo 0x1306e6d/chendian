@@ -4,47 +4,11 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Typography from '@material-ui/core/Typography';
 
 import ByteOrderTypography from '../ByteOrderTypography';
 import EndiannessTypography from '../EndiannessTypography';
+import FloatTypography from '../FloatTypography';
 import HexStringTypography from '../HexStringTypography';
-
-const endianTest = new Uint16Array(1);
-const endianTestBuffer = new Uint8Array(endianTest.buffer);
-endianTestBuffer[0] = 0xFF;
-endianTestBuffer[1] = 0x00;
-const isBigEndian = (endianTest[0] === 0x00FF);
-
-function readDoubleForwards(numberArray) {
-  const float64Array = new Float64Array(1);
-  const uint8Array = new Uint8Array(float64Array.buffer);
-
-  uint8Array[0] = numberArray[0];
-  uint8Array[1] = numberArray[1];
-  uint8Array[2] = numberArray[2];
-  uint8Array[3] = numberArray[3];
-  uint8Array[4] = numberArray[4];
-  uint8Array[5] = numberArray[5];
-  uint8Array[6] = numberArray[6];
-  uint8Array[7] = numberArray[7];
-  return float64Array[0];
-}
-
-function readDoubleBackwards(numberArray) {
-  const float64Array = new Float64Array(1);
-  const uint8Array = new Uint8Array(float64Array.buffer);
-
-  uint8Array[7] = numberArray[0];
-  uint8Array[6] = numberArray[1];
-  uint8Array[5] = numberArray[2];
-  uint8Array[4] = numberArray[3];
-  uint8Array[3] = numberArray[4];
-  uint8Array[2] = numberArray[5];
-  uint8Array[1] = numberArray[6];
-  uint8Array[0] = numberArray[7];
-  return float64Array[0];
-}
 
 function LittleEndianDouble(props) {
   const { byteArray } = props;
@@ -74,9 +38,7 @@ function LittleEndianDouble(props) {
                 <HexStringTypography array={word} />
               </Grid>
               <Grid xs={12} item>
-                <Typography variant="body1">
-                  {isBigEndian ? readDoubleBackwards(word) : readDoubleForwards(word)}
-                </Typography>
+                <FloatTypography array={word} byteLength={wordSize} />
               </Grid>
             </Grid>
           </ListItem>

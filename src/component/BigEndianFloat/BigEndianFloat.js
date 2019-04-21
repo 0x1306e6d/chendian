@@ -11,15 +11,14 @@ import FloatTypography from '../FloatTypography';
 import HexStringTypography from '../HexStringTypography';
 
 function BigEndianFloat(props) {
-  const { byteArray } = props;
-  const wordSize = 4;
+  const { array, byteLength } = props;
 
   let wordArray = [];
-  for (let i = 0; i < byteArray.length; i += wordSize) {
-    let word = new Array(wordSize);
+  for (let i = 0; i < array.length; i += byteLength) {
+    let word = new Array(byteLength);
     word.fill(0);
 
-    byteArray.slice(i, i + wordSize).forEach((byte, index) => {
+    array.slice(i, i + byteLength).forEach((byte, index) => {
       word[index] = byte;
     });
 
@@ -29,7 +28,7 @@ function BigEndianFloat(props) {
   return (
     <React.Fragment>
       <EndiannessTypography endianness="big" />
-      <ByteOrderTypography byteLength={4} endianness="big" />
+      <ByteOrderTypography byteLength={byteLength} endianness="big" />
       <List>
         {wordArray.map((word, index) => (
           <ListItem key={index} divider>
@@ -38,7 +37,7 @@ function BigEndianFloat(props) {
                 <HexStringTypography array={word} />
               </Grid>
               <Grid xs={12} item>
-                <FloatTypography array={word} byteLength={wordSize} />
+                <FloatTypography array={word} byteLength={byteLength} />
               </Grid>
             </Grid>
           </ListItem>
@@ -49,7 +48,8 @@ function BigEndianFloat(props) {
 }
 
 BigEndianFloat.propTypes = {
-  byteArray: PropTypes.array.isRequired,
+  array: PropTypes.array.isRequired,
+  byteLength: PropTypes.oneOf([4, 8]).isRequired,
 };
 
 export default BigEndianFloat;

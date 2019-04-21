@@ -8,13 +8,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import BigEndianDouble from './component/BigEndianDouble';
 import BigEndianFloat from './component/BigEndianFloat';
 import BigEndianInteger from './component/BigEndianInteger';
 import EndianConverter from './component/EndianConverter';
 import Footer from './component/Footer';
 import HexStringInput from './component/HexStringInput';
-import LittleEndianDouble from './component/LittleEndianDouble';
 import LittleEndianFloat from './component/LittleEndianFloat';
 import LittleEndianInteger from './component/LittleEndianInteger';
 import Navigation from './component/Navigation';
@@ -111,15 +109,15 @@ class App extends React.Component {
           <Grid xs={12} item>
             <Section title="double">
               <EndianConverter
-                bigEndian={<BigEndianDouble byteArray={input} />}
-                littleEndian={<LittleEndianDouble byteArray={input} />} />
+                bigEndian={<BigEndianFloat array={input} byteLength={8} />}
+                littleEndian={<LittleEndianFloat array={input} byteLength={8} />} />
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="float">
               <EndianConverter
-                bigEndian={<BigEndianFloat byteArray={input} />}
-                littleEndian={<LittleEndianFloat byteArray={input} />} />
+                bigEndian={<BigEndianFloat array={input} byteLength={4} />}
+                littleEndian={<LittleEndianFloat array={input} byteLength={4} />} />
             </Section>
           </Grid>
         </Grid>

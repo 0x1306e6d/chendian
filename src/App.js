@@ -8,7 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import EndiannessConverter from './component/EndiannessConverter';
 import Float from './component/Float';
 import Footer from './component/Footer';
 import HexStringInput from './component/HexStringInput';
@@ -59,8 +58,8 @@ const styles = (theme) => ({
   },
 });
 
-const IntegerEndiannessConverter = EndiannessConverter(Integer);
-const FloatEndiannessConverter = EndiannessConverter(Float);
+const IntegerSection = Section(Integer);
+const FloatSection = Section(Float);
 
 class App extends React.Component {
   render() {
@@ -75,94 +74,34 @@ class App extends React.Component {
             <HexStringInput />
           </Grid>
           <Grid xs={12} item>
-            <Section title="64 bit integer">
-              <Grid spacing={16} container>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={8}
-                    endianness="big" />
-                </Grid>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={8}
-                    endianness="little" />
-                </Grid>
-              </Grid>
-            </Section>
+            <IntegerSection
+              array={input}
+              byteLength={8}
+              title="64 bit integer" />
           </Grid>
           <Grid xs={12} item>
-            <Section title="32 bit integer">
-              <Grid spacing={16} container>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={4}
-                    endianness="big" />
-                </Grid>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={4}
-                    endianness="little" />
-                </Grid>
-              </Grid>
-            </Section>
+            <IntegerSection
+              array={input}
+              byteLength={4}
+              title="32 bit integer" />
           </Grid>
           <Grid xs={12} item>
-            <Section title="16 bit integer">
-              <Grid spacing={16} container>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={2}
-                    endianness="big" />
-                </Grid>
-                <Grid xs={12} lg={6} item>
-                  <IntegerEndiannessConverter
-                    array={input}
-                    byteLength={2}
-                    endianness="little" />
-                </Grid>
-              </Grid>
-            </Section>
+            <IntegerSection
+              array={input}
+              byteLength={2}
+              title="16 bit integer" />
           </Grid>
           <Grid xs={12} item>
-            <Section title="double">
-              <Grid spacing={16} container>
-                <Grid xs={12} lg={6} item>
-                  <FloatEndiannessConverter
-                    array={input}
-                    byteLength={8}
-                    endianness="big" />
-                </Grid>
-                <Grid xs={12} lg={6} item>
-                  <FloatEndiannessConverter
-                    array={input}
-                    byteLength={8}
-                    endianness="little" />
-                </Grid>
-              </Grid>
-            </Section>
+            <FloatSection
+              array={input}
+              byteLength={8}
+              title="double" />
           </Grid>
           <Grid xs={12} item>
-            <Section title="float">
-              <Grid spacing={16} container>
-                <Grid xs={12} lg={6} item>
-                  <FloatEndiannessConverter
-                    array={input}
-                    byteLength={4}
-                    endianness="big" />
-                </Grid>
-                <Grid xs={12} lg={6} item>
-                  <FloatEndiannessConverter
-                    array={input}
-                    byteLength={4}
-                    endianness="little" />
-                </Grid>
-              </Grid>
-            </Section>
+            <FloatSection
+              array={input}
+              byteLength={4}
+              title="float" />
           </Grid>
         </Grid>
         <Footer />

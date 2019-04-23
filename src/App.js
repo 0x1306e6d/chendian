@@ -9,10 +9,10 @@ import Grid from '@material-ui/core/Grid';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import EndiannessConverter from './component/EndiannessConverter';
-import FloatListItem from './component/FloatListItem';
+import Float from './component/Float';
 import Footer from './component/Footer';
 import HexStringInput from './component/HexStringInput';
-import IntegerListItem from './component/IntegerListItem';
+import Integer from './component/Integer';
 import Navigation from './component/Navigation';
 import Section from './component/Section';
 
@@ -59,8 +59,8 @@ const styles = (theme) => ({
   },
 });
 
-const IntegerEndiannessConverter = EndiannessConverter(IntegerListItem);
-const FloatEndiannessConverter = EndiannessConverter(FloatListItem);
+const IntegerEndiannessConverter = EndiannessConverter(Integer);
+const FloatEndiannessConverter = EndiannessConverter(Float);
 
 class App extends React.Component {
   render() {

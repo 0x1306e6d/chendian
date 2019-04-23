@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import ByteOrderTypography from '../ByteOrderTypography';
 import EndiannessTypography from '../EndiannessTypography';
 
-const EndiannessConverter = (ListItem) => {
+const EndiannessConverter = (TypeComponent) => {
   return class extends React.Component {
     render() {
       const { array, byteLength, endianness } = this.props;
@@ -36,7 +37,9 @@ const EndiannessConverter = (ListItem) => {
             endianness={endianness} />
           <List>
             {words.map((word, index) => (
-              <ListItem key={index} array={word} byteLength={byteLength} />
+              <ListItem key={index} divider>
+                <TypeComponent array={word} byteLength={byteLength} />
+              </ListItem>
             ))}
           </List>
         </React.Fragment>

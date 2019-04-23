@@ -1,7 +1,24 @@
 {
   "name": "chendian",
   "version": "0.1.0",
-  "private": true,
+  "description": "A single page responsive web application to change the endianness of hex string interactively.",
+  "homepage": "https://github.com/ghkim3221/chendian",
+  "bugs": "https://github.com/ghkim3221/chendian/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Gihwan Kim",
+    "email": "ghkim3221@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghkim3221/chendian"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
@@ -13,12 +30,6 @@
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

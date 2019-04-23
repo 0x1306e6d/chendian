@@ -2,7 +2,7 @@
   "name": "chendian",
   "version": "0.1.0",
   "description": "A single page responsive web application to change the endianness of hex string interactively.",
-  "homepage": "https://github.com/ghkim3221/chendian",
+  "homepage": "https://chendian.gihwan.kr",
   "bugs": "https://github.com/ghkim3221/chendian/issues",
   "license": "MIT",
   "author": {

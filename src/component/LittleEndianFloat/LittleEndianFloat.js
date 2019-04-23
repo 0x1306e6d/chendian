@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 
 import ByteOrderTypography from '../ByteOrderTypography';
 import EndiannessTypography from '../EndiannessTypography';
-import FloatTypography from '../FloatTypography';
-import HexStringTypography from '../HexStringTypography';
+import FloatListItem from '../FloatListItem';
 
 function LittleEndianFloat(props) {
   const { array, byteLength } = props;
@@ -31,16 +28,7 @@ function LittleEndianFloat(props) {
       <ByteOrderTypography byteLength={byteLength} endianness="little" />
       <List>
         {wordArray.map((word, index) => (
-          <ListItem key={index} divider>
-            <Grid spacing={16} container>
-              <Grid xs={12} item>
-                <HexStringTypography array={word} />
-              </Grid>
-              <Grid xs={12} item>
-                <FloatTypography array={word} byteLength={byteLength} />
-              </Grid>
-            </Grid>
-          </ListItem>
+          <FloatListItem key={index} array={word} byteLength={byteLength} />
         ))}
       </List>
     </React.Fragment>

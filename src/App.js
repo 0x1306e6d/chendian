@@ -8,13 +8,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import BigEndianFloat from './component/BigEndianFloat';
-import BigEndianInteger from './component/BigEndianInteger';
-import EndianConverter from './component/EndianConverter';
+import EndiannessConverter from './component/EndiannessConverter';
+import FloatListItem from './component/FloatListItem';
 import Footer from './component/Footer';
 import HexStringInput from './component/HexStringInput';
-import LittleEndianFloat from './component/LittleEndianFloat';
-import LittleEndianInteger from './component/LittleEndianInteger';
+import IntegerListItem from './component/IntegerListItem';
 import Navigation from './component/Navigation';
 import Section from './component/Section';
 
@@ -61,6 +59,9 @@ const styles = (theme) => ({
   },
 });
 
+const IntegerEndiannessConverter = EndiannessConverter(IntegerListItem);
+const FloatEndiannessConverter = EndiannessConverter(FloatListItem);
+
 class App extends React.Component {
   render() {
     const { classes, input } = this.props;
@@ -75,49 +76,92 @@ class App extends React.Component {
           </Grid>
           <Grid xs={12} item>
             <Section title="64 bit integer">
-              <EndianConverter
-                bigEndian={
-                  <BigEndianInteger byteArray={input} size={64} />
-                }
-                littleEndian={
-                  <LittleEndianInteger byteArray={input} size={64} />
-                } />
+              <Grid spacing={16} container>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={8}
+                    endianness="big" />
+                </Grid>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={8}
+                    endianness="little" />
+                </Grid>
+              </Grid>
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="32 bit integer">
-              <EndianConverter
-                bigEndian={
-                  <BigEndianInteger byteArray={input} size={32} />
-                }
-                littleEndian={
-                  <LittleEndianInteger byteArray={input} size={32} />
-                } />
+              <Grid spacing={16} container>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={4}
+                    endianness="big" />
+                </Grid>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={4}
+                    endianness="little" />
+                </Grid>
+              </Grid>
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="16 bit integer">
-              <EndianConverter
-                bigEndian={
-                  <BigEndianInteger byteArray={input} size={16} />
-                }
-                littleEndian={
-                  <LittleEndianInteger byteArray={input} size={16} />
-                } />
+              <Grid spacing={16} container>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={2}
+                    endianness="big" />
+                </Grid>
+                <Grid xs={12} lg={6} item>
+                  <IntegerEndiannessConverter
+                    array={input}
+                    byteLength={2}
+                    endianness="little" />
+                </Grid>
+              </Grid>
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="double">
-              <EndianConverter
-                bigEndian={<BigEndianFloat array={input} byteLength={8} />}
-                littleEndian={<LittleEndianFloat array={input} byteLength={8} />} />
+              <Grid spacing={16} container>
+                <Grid xs={12} lg={6} item>
+                  <FloatEndiannessConverter
+                    array={input}
+                    byteLength={8}
+                    endianness="big" />
+                </Grid>
+                <Grid xs={12} lg={6} item>
+                  <FloatEndiannessConverter
+                    array={input}
+                    byteLength={8}
+                    endianness="little" />
+                </Grid>
+              </Grid>
             </Section>
           </Grid>
           <Grid xs={12} item>
             <Section title="float">
-              <EndianConverter
-                bigEndian={<BigEndianFloat array={input} byteLength={4} />}
-                littleEndian={<LittleEndianFloat array={input} byteLength={4} />} />
+              <Grid spacing={16} container>
+                <Grid xs={12} lg={6} item>
+                  <FloatEndiannessConverter
+                    array={input}
+                    byteLength={4}
+                    endianness="big" />
+                </Grid>
+                <Grid xs={12} lg={6} item>
+                  <FloatEndiannessConverter
+                    array={input}
+                    byteLength={4}
+                    endianness="little" />
+                </Grid>
+              </Grid>
             </Section>
           </Grid>
         </Grid>

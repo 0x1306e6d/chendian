@@ -33,11 +33,13 @@ class IntegerTypography extends React.Component {
   }
 
   readUnsignedInteger() {
-    const { array } = this.props;
+    const { array, byteLength } = this.props;
 
-    return array.reduceRight(
+    return array.reduce(
       (acc, current, index) => {
-        return acc.plus(new Big(current).times(powTable[index]));
+        return acc.plus(
+          new Big(current).times(powTable[byteLength - index - 1])
+        );
       },
       new Big(0)
     );

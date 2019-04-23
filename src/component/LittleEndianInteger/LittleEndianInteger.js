@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 
 import ByteOrderTypography from '../ByteOrderTypography';
 import EndiannessTypography from '../EndiannessTypography';
-import HexStringTypography from '../HexStringTypography';
-import IntegerTypography from '../IntegerTypography';
+import IntegerListItem from '../IntegerListItem';
 
 function LittleEndianInteger(props) {
   const { byteArray, size } = props;
-  const is64Bit = (size === 64);
   const wordSize = (size / 8);
 
   let wordArray = [];
@@ -31,27 +27,8 @@ function LittleEndianInteger(props) {
       <EndiannessTypography endianness="little" />
       <ByteOrderTypography byteLength={wordSize} endianness="little" />
       <List>
-        {/* TODO(@ghkim3221): modularization */}
         {wordArray.map((word, index) => (
-          <ListItem key={index} divider>
-            <Grid spacing={16} container>
-              <Grid xs={12} item>
-                <HexStringTypography array={word} />
-              </Grid>
-              <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-                <IntegerTypography
-                  array={word}
-                  byteLength={size / 8}
-                  signed={true} />
-              </Grid>
-              <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-                <IntegerTypography
-                  array={word}
-                  byteLength={size / 8}
-                  signed={false} />
-              </Grid>
-            </Grid>
-          </ListItem>
+          <IntegerListItem key={index} array={word} byteLength={wordSize} />
         ))}
       </List>
     </React.Fragment>

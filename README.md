@@ -47,4 +47,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-[1]: https://chendian.gihwan.kr
+[1]: https://chendian.dev

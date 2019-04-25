@@ -1,6 +1,25 @@
 # chendian
 
-chendian
+[Go to chendian][1]
+
+The chendian (`change` + `endianness`) is an online endianness converter to
+convert the endianness of hex string into short, int, long, float and double
+interactively. It supports mobile compatibility to help you convert hex string
+in any device from smart phone to desktop.
+
+We use React.js to build single page application with Material-UI components.
+Even though there is only one state, we use Redux to manage the state more 
+easily. You can see UI related React components in `src/component` and Redux
+related module in `src/action` and `stc/reducer`.
+
+We deploy release in GitHub Pages. You can see in `gh-pages` branch.
+
+## Usage
+
+```
+npm install
+npm start
+```
 
 ## License
 
@@ -27,3 +46,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+[1]: https://chendian.gihwan.kr

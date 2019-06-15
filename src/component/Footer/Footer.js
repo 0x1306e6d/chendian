@@ -14,10 +14,17 @@ const styles = (theme) => ({
 });
 
 function Footer(props) {
-  const { classes } = props;
+  const { classes, version } = props;
 
   return (
     <footer className={classes.root}>
+      <Typography
+        className={classes.typography}
+        align="center"
+        color="textPrimary"
+        variant="subtitle1">
+        {version}
+      </Typography>
       <Typography
         className={classes.typography}
         align="center"
@@ -31,6 +38,7 @@ function Footer(props) {
 
 Footer.propTypes = {
   classes: PropTypes.object.isRequired,
+  version: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Footer);

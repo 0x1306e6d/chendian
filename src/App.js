@@ -63,7 +63,7 @@ const FloatSection = Section(Float);
 
 class App extends React.Component {
   render() {
-    const { classes, input } = this.props;
+    const { classes, version, input } = this.props;
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -104,7 +104,7 @@ class App extends React.Component {
               title="float" />
           </Grid>
         </Grid>
-        <Footer />
+        <Footer version={version} />
       </MuiThemeProvider>
     );
   }
@@ -112,6 +112,7 @@ class App extends React.Component {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
+  version: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

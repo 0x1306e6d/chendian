@@ -9,11 +9,12 @@ import './App.css';
 import reducer from './reducer';
 import * as serviceWorker from './serviceWorker';
 
+const version = 'chendian 1.1.0-rc';
 const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App version={version} />
   </Provider>,
   document.getElementById('root')
 );

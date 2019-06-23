@@ -3,47 +3,115 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-function ByteOrderTypography(props) {
-  const { byteLength, endianness } = props;
-  const isBigEndian = (endianness.toLowerCase() === 'big');
-
-  let byteOrder = null;
+function BigEndianByteOrderTypography(byteLength) {
   switch (byteLength) {
     case 2:
-      if (isBigEndian) {
-        byteOrder = 'A B';
-      } else {
-        byteOrder = 'B A';
-      }
-      break;
+      return (
+        <Typography color="textSecondary" variant="h6">
+          A B
+        </Typography>
+      );
     case 4:
-      if (isBigEndian) {
-        byteOrder = 'A B C D';
-      } else {
-        byteOrder = 'D C B A';
-      }
-      break;
+      return (
+        <Typography color="textSecondary" variant="h6">
+          A B C D
+        </Typography>
+      );
     case 8:
-      if (isBigEndian) {
-        byteOrder = 'A B C D E F G H';
-      } else {
-        byteOrder = 'H G F E D C B A';
-      }
-      break;
+      return (
+        <Typography color="textSecondary" variant="h6">
+          A B C D E F G H
+        </Typography>
+      );
     default:
-      break;
+      return (
+        <Typography color="textSecondary" variant="h6">
+          Unknown
+        </Typography>
+      );
   }
+}
 
-  return (
-    <Typography color="textSecondary" variant="h6">
-      {byteOrder}
-    </Typography>
-  );
+function MiddleBigEndianByteOrderTypography(byteLength) {
+  switch (byteLength) {
+    case 2:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          A B
+        </Typography>
+      );
+    case 4:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          B A D C
+        </Typography>
+      );
+    case 8:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          B A D C F E H G
+        </Typography>
+      );
+    default:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          Unknown
+        </Typography>
+      );
+  }
+}
+
+function LittleEndianByteOrderTypography(byteLength) {
+  switch (byteLength) {
+    case 2:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          B A
+        </Typography>
+      );
+    case 4:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          D C B A
+        </Typography>
+      );
+    case 8:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          H G F E D C B A
+        </Typography>
+      );
+    default:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          Unknown
+        </Typography>
+      );
+  }
+}
+
+function ByteOrderTypography(props) {
+  const { byteLength, endianness } = props;
+
+  switch (endianness) {
+    case 'big':
+      return BigEndianByteOrderTypography(byteLength);
+    case 'middleBig':
+      return MiddleBigEndianByteOrderTypography(byteLength);
+    case 'little':
+      return LittleEndianByteOrderTypography(byteLength);
+    default:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          Unknown
+        </Typography>
+      );
+  }
 }
 
 ByteOrderTypography.propTypes = {
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
-  endianness: PropTypes.oneOf(['big', 'little']).isRequired,
+  endianness: PropTypes.oneOf(['big', 'middleBig', 'little']).isRequired,
 };
 
 export default ByteOrderTypography;

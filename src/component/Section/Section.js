@@ -35,18 +35,22 @@ const Section = (TypeComponent) => {
                 byteLength={byteLength}
                 endianness="little" />
             </Grid>
-            <Grid xs={12} lg={6} item>
-              <TypeEndiannessConverter
-                array={array}
-                byteLength={byteLength}
-                endianness="middleBig" />
-            </Grid>
-            <Grid xs={12} lg={6} item>
-              <TypeEndiannessConverter
-                array={array}
-                byteLength={byteLength}
-                endianness="middleLittle" />
-            </Grid>
+            {byteLength > 2 &&
+              <Grid xs={12} lg={6} item>
+                <TypeEndiannessConverter
+                  array={array}
+                  byteLength={byteLength}
+                  endianness="middleBig" />
+              </Grid>
+            }
+            {byteLength > 2 &&
+              <Grid xs={12} lg={6} item>
+                <TypeEndiannessConverter
+                  array={array}
+                  byteLength={byteLength}
+                  endianness="middleLittle" />
+              </Grid>
+            }
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>

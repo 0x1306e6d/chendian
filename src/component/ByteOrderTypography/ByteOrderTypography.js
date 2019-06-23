@@ -61,6 +61,35 @@ function MiddleBigEndianByteOrderTypography(byteLength) {
   }
 }
 
+function MiddleLittleEndianByteOrderTypography(byteLength) {
+  switch (byteLength) {
+    case 2:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          A B
+        </Typography>
+      );
+    case 4:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          C D A B
+        </Typography>
+      );
+    case 8:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          G H E F C D A B
+        </Typography>
+      );
+    default:
+      return (
+        <Typography color="textSecondary" variant="h6">
+          Unknown
+        </Typography>
+      );
+  }
+}
+
 function LittleEndianByteOrderTypography(byteLength) {
   switch (byteLength) {
     case 2:
@@ -98,6 +127,8 @@ function ByteOrderTypography(props) {
       return BigEndianByteOrderTypography(byteLength);
     case 'middleBig':
       return MiddleBigEndianByteOrderTypography(byteLength);
+    case 'middleLittle':
+      return MiddleLittleEndianByteOrderTypography(byteLength);
     case 'little':
       return LittleEndianByteOrderTypography(byteLength);
     default:
@@ -111,7 +142,7 @@ function ByteOrderTypography(props) {
 
 ByteOrderTypography.propTypes = {
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
-  endianness: PropTypes.oneOf(['big', 'middleBig', 'little']).isRequired,
+  endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,
 };
 
 export default ByteOrderTypography;

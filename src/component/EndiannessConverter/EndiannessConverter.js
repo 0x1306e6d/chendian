@@ -71,6 +71,38 @@ function convertAsMiddleBigEndian(byteLength, array) {
   return word;
 }
 
+function convertAsMiddleLittleEndian(byteLength, array) {
+  let word = new Array(byteLength);
+  word.fill(0);
+
+  switch (byteLength) {
+    case 2:
+      word[0] = array[0];
+      word[1] = array[1];
+      break;
+    case 4:
+      word[0] = array[2];
+      word[1] = array[3];
+      word[2] = array[0];
+      word[3] = array[1];
+      break;
+    case 8:
+      word[0] = array[6];
+      word[1] = array[7];
+      word[2] = array[4];
+      word[3] = array[5];
+      word[4] = array[2];
+      word[5] = array[3];
+      word[6] = array[1];
+      word[7] = array[0];
+      break;
+    default:
+      break;
+  }
+
+  return word;
+}
+
 function convertAsLittleEndian(byteLength, array) {
   let word = new Array(byteLength);
   word.fill(0);
@@ -124,6 +156,9 @@ const EndiannessConverter = (TypeComponent) => {
           case 'middleBig':
             words.push(convertAsMiddleBigEndian(byteLength, word));
             break;
+          case 'middleLittle':
+            words.push(convertAsMiddleLittleEndian(byteLength, word));
+            break;
           case 'little':
             words.push(convertAsLittleEndian(byteLength, word));
             break;
@@ -154,7 +189,7 @@ const EndiannessConverter = (TypeComponent) => {
 EndiannessConverter.propTypes = {
   array: PropTypes.array.isRequired,
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
-  endianness: PropTypes.oneOf(['big', 'middleBig', 'little']).isRequired,
+  endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,
 };
 
 export default EndiannessConverter;

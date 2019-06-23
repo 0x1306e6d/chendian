@@ -19,6 +19,12 @@ function EndiannessTypography(props) {
           Middle Big Endian
         </Typography>
       );
+    case 'middleLittle':
+      return (
+        <Typography color="textPrimary" variant="h5">
+          Middle Little Endian
+        </Typography>
+      );
     case 'little':
       return (
         <Typography color="textPrimary" variant="h5">
@@ -35,7 +41,7 @@ function EndiannessTypography(props) {
 }
 
 EndiannessTypography.propTypes = {
-  endianness: PropTypes.oneOf(['big', 'middleBig', 'little']).isRequired,
+  endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,
 };
 
 export default EndiannessTypography;

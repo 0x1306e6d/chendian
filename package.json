@@ -1,6 +1,6 @@
 {
   "name": "chendian",
-  "version": "1.1.0-rc",
+  "version": "1.1.0",
   "description": "A single page responsive web application to change the endianness of hex string interactively.",
   "homepage": "https://chendian.dev",
   "bugs": "https://github.com/ghkim3221/chendian/issues",

@@ -39,6 +39,12 @@ const Section = (TypeComponent) => {
               <TypeEndiannessConverter
                 array={array}
                 byteLength={byteLength}
+                endianness="middleLittle" />
+            </Grid>
+            <Grid xs={12} lg={6} item>
+              <TypeEndiannessConverter
+                array={array}
+                byteLength={byteLength}
                 endianness="little" />
             </Grid>
           </Grid>

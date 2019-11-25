@@ -8,12 +8,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import Float from './component/Float';
-import Footer from './component/Footer';
-import HexStringInput from './component/HexStringInput';
-import Integer from './component/Integer';
-import Navigation from './component/Navigation';
-import Section from './component/Section';
+import Float from './components/Float';
+import Footer from './components/Footer';
+import HexStringInput from './components/HexStringInput';
+import Integer from './components/Integer';
+import Navigation from './components/Navigation';
+import Section from './components/Section';
 
 const theme = createMuiTheme({
   palette: {

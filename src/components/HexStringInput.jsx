@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 
-import { changeInput } from '../../action/input';
+import { changeInput } from '../action/input';
 
 function validate(hexText) {
   return /^[a-fA-F0-9\s]*$/.test(hexText);

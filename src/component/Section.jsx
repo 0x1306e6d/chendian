@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import EndiannessConverter from '../EndiannessConverter';
+import EndiannessConverter from './EndiannessConverter';
 
 const Section = (TypeComponent) => {
   return function (props) {

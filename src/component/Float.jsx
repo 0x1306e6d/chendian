@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import Grid from '@material-ui/core/Grid';
 
-import FloatTypography from '../FloatTypography';
-import HexStringTypography from '../HexStringTypography';
+import FloatTypography from './FloatTypography';
+import HexStringTypography from './HexStringTypography';
 
 function Float(props) {
   const { array, byteLength } = props;

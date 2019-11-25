@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 
-import HexStringTypography from '../HexStringTypography';
-import IntegerTypography from '../IntegerTypography';
+import HexStringTypography from './HexStringTypography';
+import IntegerTypography from './IntegerTypography';
 
 function Integer(props) {
   const { array, byteLength } = props;

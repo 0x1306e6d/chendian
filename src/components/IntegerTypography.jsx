@@ -24,25 +24,19 @@ const signedThreshold = {
 };
 
 const IntegerTypography = ({ array, byteLength, signed }) => {
-  const readUnsignedInteger = () => {
-    return array.reduce(
-      (acc, current, index) => {
-        return acc.plus(
-          new Big(current).times(powTable[byteLength - index - 1])
-        );
-      },
-      new Big(0)
-    );
-  };
+  const readUnsignedInteger = () => array.reduce(
+    (acc, current, index) => acc.plus(new Big(current).times(powTable[byteLength - index - 1])),
+    new Big(0),
+  );
 
   const readSignedInteger = () => {
     const unsigned = readUnsignedInteger();
 
     if (unsigned.gte(signedThreshold[byteLength])) {
       return unsigned.minus(powTable[byteLength]);
-    } else {
-      return unsigned;
     }
+
+    return unsigned;
   };
 
   const renderInteger = () => {
@@ -52,27 +46,27 @@ const IntegerTypography = ({ array, byteLength, signed }) => {
           {readSignedInteger().toString()}
         </Typography>
       );
-    } else {
-      return (
-        <Typography variant="body1">
-          {readUnsignedInteger().toString()}
-        </Typography>
-      );
     }
+
+    return (
+      <Typography variant="body1">
+        {readUnsignedInteger().toString()}
+      </Typography>
+    );
   };
 
   return (
-    <React.Fragment>
+    <>
       <Typography variant="overline">
         {signed ? 'Signed' : 'Unsigned'}
       </Typography>
       {renderInteger()}
-    </React.Fragment>
+    </>
   );
-}
+};
 
 IntegerTypography.propTypes = {
-  array: PropTypes.array.isRequired,
+  array: PropTypes.arrayOf(PropTypes.number).isRequired,
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
   signed: PropTypes.bool.isRequired,
 };

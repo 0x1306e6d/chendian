@@ -15,9 +15,7 @@ const styles = (theme) => ({
   },
 });
 
-function NavigationBrand(props) {
-  const { classes } = props;
-
+const NavigationBrand = ({ classes }) => {
   return (
     <Button className={classes.root} color="inherit" component="a" href="/">
       <ShuffleIcon className={classes.icon} color="inherit" />

@@ -9,17 +9,10 @@ const validate = (hexText) => {
   return /^[a-fA-F0-9\s]*$/.test(hexText);
 }
 
-class HexStringInput extends React.Component {
-  constructor(props) {
-    super(props);
+const HexStringInput = ({ change }) => {
+  const [error, setError] = React.useState(false);
 
-    this.handleChange = this.handleChange.bind(this);
-
-    this.state = { error: false };
-  }
-
-  handleChange(event) {
-    const { error } = this.state;
+  const handleChange = (event) => {
     const { value } = event.target;
 
     if (validate(value)) {
@@ -38,30 +31,26 @@ class HexStringInput extends React.Component {
       }
 
       if (error === true) {
-        this.setState({ error: false });
+        setError(false);
       }
-      this.props.change(byteArray);
+      change(byteArray);
     } else {
       if (error === false) {
-        this.setState({ error: true });
+        setError(true);
       }
     }
-  }
+  };
 
-  render() {
-    const { error } = this.state;
-
-    return (
-      <TextField
-        error={error}
-        helperText={error && "please enter the correct hex string."}
-        placeholder="please enter the hex string."
-        variant="outlined"
-        fullWidth
-        multiline
-        onChange={this.handleChange} />
-    );
-  }
+  return (
+    <TextField
+      error={error}
+      helperText={error && "please enter the correct hex string."}
+      placeholder="please enter the hex string."
+      variant="outlined"
+      fullWidth
+      multiline
+      onChange={handleChange} />
+  );
 }
 
 const mapDispatchToProps = (dispatch) => ({

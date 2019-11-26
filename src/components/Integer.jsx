@@ -7,7 +7,7 @@ import HexStringTypography from './HexStringTypography';
 import IntegerTypography from './IntegerTypography';
 
 const Integer = ({ array, byteLength }) => {
-  const is64Bit = (byteLength === 8);
+  const is64Bit = byteLength === 8;
 
   return (
     <Grid spacing={16} container>

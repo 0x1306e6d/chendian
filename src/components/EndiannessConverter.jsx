@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,7 +9,7 @@ import ByteOrderTypography from './ByteOrderTypography';
 import EndiannessTypography from './EndiannessTypography';
 
 const convertAsBigEndian = (byteLength, array) => {
-  let word = new Array(byteLength);
+  const word = new Array(byteLength);
   word.fill(0);
 
   switch (byteLength) {
@@ -37,10 +38,10 @@ const convertAsBigEndian = (byteLength, array) => {
   }
 
   return word;
-}
+};
 
 const convertAsMiddleBigEndian = (byteLength, array) => {
-  let word = new Array(byteLength);
+  const word = new Array(byteLength);
   word.fill(0);
 
   switch (byteLength) {
@@ -69,10 +70,10 @@ const convertAsMiddleBigEndian = (byteLength, array) => {
   }
 
   return word;
-}
+};
 
 const convertAsMiddleLittleEndian = (byteLength, array) => {
-  let word = new Array(byteLength);
+  const word = new Array(byteLength);
   word.fill(0);
 
   switch (byteLength) {
@@ -101,10 +102,10 @@ const convertAsMiddleLittleEndian = (byteLength, array) => {
   }
 
   return word;
-}
+};
 
 const convertAsLittleEndian = (byteLength, array) => {
-  let word = new Array(byteLength);
+  const word = new Array(byteLength);
   word.fill(0);
 
   switch (byteLength) {
@@ -133,13 +134,13 @@ const convertAsLittleEndian = (byteLength, array) => {
   }
 
   return word;
-}
+};
 
 const EndiannessConverter = (TypeComponent) => {
-  return ({ array, byteLength, endianness }) => {
-    let words = []
+  const WrappedEndiannessConverter = ({ array, byteLength, endianness }) => {
+    const words = [];
     for (let i = 0; i < array.length; i += byteLength) {
-      let word = new Array(byteLength);
+      const word = new Array(byteLength);
       word.fill(0);
 
       array.slice(i, i + byteLength).forEach((byte, index) => {
@@ -165,25 +166,32 @@ const EndiannessConverter = (TypeComponent) => {
     }
 
     return (
-      <React.Fragment>
+      <>
         <EndiannessTypography endianness={endianness} />
-        <ByteOrderTypography
-          byteLength={byteLength}
-          endianness={endianness} />
+        <ByteOrderTypography byteLength={byteLength} endianness={endianness} />
         <List>
           {words.map((word, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <ListItem key={index} divider>
               <TypeComponent array={word} byteLength={byteLength} />
             </ListItem>
           ))}
         </List>
-      </React.Fragment>
+      </>
     );
   };
-}
+
+  WrappedEndiannessConverter.propTypes = {
+    array: PropTypes.arrayOf(PropTypes.number).isRequired,
+    byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
+    endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,
+  };
+
+  return WrappedEndiannessConverter;
+};
 
 EndiannessConverter.propTypes = {
-  array: PropTypes.array.isRequired,
+  array: PropTypes.arrayOf(PropTypes.number).isRequired,
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
   endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,
 };

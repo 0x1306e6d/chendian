@@ -12,8 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EndiannessConverter from './EndiannessConverter';
 
 const Section = (TypeComponent) => {
-  return function (props) {
-    const { array, byteLength, title } = props;
+  return ({ array, byteLength, title }) => {
     const TypeEndiannessConverter = EndiannessConverter(TypeComponent);
 
     return (

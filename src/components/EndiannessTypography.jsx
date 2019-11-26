@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-function EndiannessTypography(props) {
-  const { endianness } = props;
-
+const EndiannessTypography = ({ endianness }) => {
   switch (endianness) {
     case 'big':
       return (

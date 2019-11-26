@@ -6,9 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import FloatTypography from './FloatTypography';
 import HexStringTypography from './HexStringTypography';
 
-function Float(props) {
-  const { array, byteLength } = props;
-
+const Float = ({ array, byteLength }) => {
   return (
     <Grid spacing={16} container>
       <Grid xs={12} item>

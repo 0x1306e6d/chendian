@@ -13,9 +13,7 @@ const styles = (theme) => ({
   },
 });
 
-function Footer(props) {
-  const { classes, version } = props;
-
+const Footer = ({ classes, version }) => {
   return (
     <footer className={classes.root}>
       <Typography

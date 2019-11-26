@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { changeInput } from '../action/input';
 
-function validate(hexText) {
+const validate = (hexText) => {
   return /^[a-fA-F0-9\s]*$/.test(hexText);
 }
 

@@ -6,8 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import HexStringTypography from './HexStringTypography';
 import IntegerTypography from './IntegerTypography';
 
-function Integer(props) {
-  const { array, byteLength } = props;
+const Integer = ({ array, byteLength }) => {
   const is64Bit = (byteLength === 8);
 
   return (

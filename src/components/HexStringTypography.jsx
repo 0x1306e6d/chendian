@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-function hexify(b) {
+const hexify = (b) => {
   return b.toString(16).toUpperCase().padStart(2, '0');
 }
 
-function HexStringTypography(props) {
-  const { array } = props;
-
+const HexStringTypography = ({ array }) => {
   return (
     <Typography variant="subtitle1">
       {array.map(hexify).join(' ')}

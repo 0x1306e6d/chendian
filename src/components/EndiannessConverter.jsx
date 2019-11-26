@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ByteOrderTypography from './ByteOrderTypography';
 import EndiannessTypography from './EndiannessTypography';
 
-function convertAsBigEndian(byteLength, array) {
+const convertAsBigEndian = (byteLength, array) => {
   let word = new Array(byteLength);
   word.fill(0);
 
@@ -39,7 +39,7 @@ function convertAsBigEndian(byteLength, array) {
   return word;
 }
 
-function convertAsMiddleBigEndian(byteLength, array) {
+const convertAsMiddleBigEndian = (byteLength, array) => {
   let word = new Array(byteLength);
   word.fill(0);
 
@@ -71,7 +71,7 @@ function convertAsMiddleBigEndian(byteLength, array) {
   return word;
 }
 
-function convertAsMiddleLittleEndian(byteLength, array) {
+const convertAsMiddleLittleEndian = (byteLength, array) => {
   let word = new Array(byteLength);
   word.fill(0);
 
@@ -103,7 +103,7 @@ function convertAsMiddleLittleEndian(byteLength, array) {
   return word;
 }
 
-function convertAsLittleEndian(byteLength, array) {
+const convertAsLittleEndian = (byteLength, array) => {
   let word = new Array(byteLength);
   word.fill(0);
 
@@ -136,54 +136,50 @@ function convertAsLittleEndian(byteLength, array) {
 }
 
 const EndiannessConverter = (TypeComponent) => {
-  return class extends React.Component {
-    render() {
-      const { array, byteLength, endianness } = this.props;
+  return ({ array, byteLength, endianness }) => {
+    let words = []
+    for (let i = 0; i < array.length; i += byteLength) {
+      let word = new Array(byteLength);
+      word.fill(0);
 
-      let words = []
-      for (let i = 0; i < array.length; i += byteLength) {
-        let word = new Array(byteLength);
-        word.fill(0);
+      array.slice(i, i + byteLength).forEach((byte, index) => {
+        word[index] = byte;
+      });
 
-        array.slice(i, i + byteLength).forEach((byte, index) => {
-          word[index] = byte;
-        });
-
-        switch (endianness) {
-          case 'big':
-            words.push(convertAsBigEndian(byteLength, word));
-            break;
-          case 'middleBig':
-            words.push(convertAsMiddleBigEndian(byteLength, word));
-            break;
-          case 'middleLittle':
-            words.push(convertAsMiddleLittleEndian(byteLength, word));
-            break;
-          case 'little':
-            words.push(convertAsLittleEndian(byteLength, word));
-            break;
-          default:
-            break;
-        }
+      switch (endianness) {
+        case 'big':
+          words.push(convertAsBigEndian(byteLength, word));
+          break;
+        case 'middleBig':
+          words.push(convertAsMiddleBigEndian(byteLength, word));
+          break;
+        case 'middleLittle':
+          words.push(convertAsMiddleLittleEndian(byteLength, word));
+          break;
+        case 'little':
+          words.push(convertAsLittleEndian(byteLength, word));
+          break;
+        default:
+          break;
       }
-
-      return (
-        <React.Fragment>
-          <EndiannessTypography endianness={endianness} />
-          <ByteOrderTypography
-            byteLength={byteLength}
-            endianness={endianness} />
-          <List>
-            {words.map((word, index) => (
-              <ListItem key={index} divider>
-                <TypeComponent array={word} byteLength={byteLength} />
-              </ListItem>
-            ))}
-          </List>
-        </React.Fragment>
-      );
     }
-  }
+
+    return (
+      <React.Fragment>
+        <EndiannessTypography endianness={endianness} />
+        <ByteOrderTypography
+          byteLength={byteLength}
+          endianness={endianness} />
+        <List>
+          {words.map((word, index) => (
+            <ListItem key={index} divider>
+              <TypeComponent array={word} byteLength={byteLength} />
+            </ListItem>
+          ))}
+        </List>
+      </React.Fragment>
+    );
+  };
 }
 
 EndiannessConverter.propTypes = {

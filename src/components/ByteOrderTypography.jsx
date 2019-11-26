@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-function BigEndianByteOrderTypography(byteLength) {
+const BigEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
     case 2:
       return (
@@ -32,7 +32,7 @@ function BigEndianByteOrderTypography(byteLength) {
   }
 }
 
-function MiddleBigEndianByteOrderTypography(byteLength) {
+const MiddleBigEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
     case 2:
       return (
@@ -61,7 +61,7 @@ function MiddleBigEndianByteOrderTypography(byteLength) {
   }
 }
 
-function MiddleLittleEndianByteOrderTypography(byteLength) {
+const MiddleLittleEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
     case 2:
       return (
@@ -90,7 +90,7 @@ function MiddleLittleEndianByteOrderTypography(byteLength) {
   }
 }
 
-function LittleEndianByteOrderTypography(byteLength) {
+const LittleEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
     case 2:
       return (
@@ -119,9 +119,7 @@ function LittleEndianByteOrderTypography(byteLength) {
   }
 }
 
-function ByteOrderTypography(props) {
-  const { byteLength, endianness } = props;
-
+const ByteOrderTypography = ({ byteLength, endianness }) => {
   switch (endianness) {
     case 'big':
       return BigEndianByteOrderTypography(byteLength);

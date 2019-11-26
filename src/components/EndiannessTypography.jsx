@@ -36,7 +36,7 @@ const EndiannessTypography = ({ endianness }) => {
         </Typography>
       );
   }
-}
+};
 
 EndiannessTypography.propTypes = {
   endianness: PropTypes.oneOf(['big', 'middleBig', 'middleLittle', 'little']).isRequired,

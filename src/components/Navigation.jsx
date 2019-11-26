@@ -21,27 +21,25 @@ const styles = (theme) => ({
   },
 });
 
-const Navigation = ({ classes }) => {
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <NavigationBrand />
-          <div className={classes.grow} />
-          <IconButton
-            color="inherit"
-            component="a"
-            href="https://github.com/ghkim3221/chendian">
-            <GitHubIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+const Navigation = ({ classes }) => (
+  <div className={classes.root}>
+    <AppBar position="static">
+      <Toolbar>
+        <NavigationBrand />
+        <div className={classes.grow} />
+        <IconButton color="inherit" component="a" href="https://github.com/ghkim3221/chendian">
+          <GitHubIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  </div>
+);
 
 Navigation.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    root: PropTypes.string.isRequired,
+    grow: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(Navigation);

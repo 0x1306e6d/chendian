@@ -15,7 +15,7 @@ import Integer from './components/Integer';
 import Navigation from './components/Navigation';
 import Section from './components/Section';
 
-const theme = createMuiTheme({
+const muiTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#263238',
@@ -61,58 +61,44 @@ const styles = (theme) => ({
 const IntegerSection = Section(Integer);
 const FloatSection = Section(Float);
 
-const App = ({ classes, version, input }) => {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navigation />
-      <Grid className={classes.layout} spacing={16} container>
-        <Grid xs={12} item>
-          <HexStringInput />
-        </Grid>
-        <Grid xs={12} item>
-          <IntegerSection
-            array={input}
-            byteLength={8}
-            title="64 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <IntegerSection
-            array={input}
-            byteLength={4}
-            title="32 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <IntegerSection
-            array={input}
-            byteLength={2}
-            title="16 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <FloatSection
-            array={input}
-            byteLength={8}
-            title="double" />
-        </Grid>
-        <Grid xs={12} item>
-          <FloatSection
-            array={input}
-            byteLength={4}
-            title="float" />
-        </Grid>
+const App = ({ classes, version, input }) => (
+  <MuiThemeProvider theme={muiTheme}>
+    <CssBaseline />
+    <Navigation />
+    <Grid className={classes.layout} spacing={16} container>
+      <Grid xs={12} item>
+        <HexStringInput />
       </Grid>
-      <Footer version={version} />
-    </MuiThemeProvider>
-  );
-}
+      <Grid xs={12} item>
+        <IntegerSection array={input} byteLength={8} title="64 bit integer" />
+      </Grid>
+      <Grid xs={12} item>
+        <IntegerSection array={input} byteLength={4} title="32 bit integer" />
+      </Grid>
+      <Grid xs={12} item>
+        <IntegerSection array={input} byteLength={2} title="16 bit integer" />
+      </Grid>
+      <Grid xs={12} item>
+        <FloatSection array={input} byteLength={8} title="double" />
+      </Grid>
+      <Grid xs={12} item>
+        <FloatSection array={input} byteLength={4} title="float" />
+      </Grid>
+    </Grid>
+    <Footer version={version} />
+  </MuiThemeProvider>
+);
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    layout: PropTypes.string.isRequired,
+  }).isRequired,
   version: PropTypes.string.isRequired,
+  input: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  input: state.input
+  input: state.input,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(App));

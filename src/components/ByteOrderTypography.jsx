@@ -30,7 +30,7 @@ const BigEndianByteOrderTypography = (byteLength) => {
         </Typography>
       );
   }
-}
+};
 
 const MiddleBigEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
@@ -59,7 +59,7 @@ const MiddleBigEndianByteOrderTypography = (byteLength) => {
         </Typography>
       );
   }
-}
+};
 
 const MiddleLittleEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
@@ -88,7 +88,7 @@ const MiddleLittleEndianByteOrderTypography = (byteLength) => {
         </Typography>
       );
   }
-}
+};
 
 const LittleEndianByteOrderTypography = (byteLength) => {
   switch (byteLength) {
@@ -117,7 +117,7 @@ const LittleEndianByteOrderTypography = (byteLength) => {
         </Typography>
       );
   }
-}
+};
 
 const ByteOrderTypography = ({ byteLength, endianness }) => {
   switch (endianness) {
@@ -136,7 +136,7 @@ const ByteOrderTypography = ({ byteLength, endianness }) => {
         </Typography>
       );
   }
-}
+};
 
 ByteOrderTypography.propTypes = {
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,

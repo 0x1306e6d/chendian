@@ -15,23 +15,17 @@ const Integer = ({ array, byteLength }) => {
         <HexStringTypography array={array} />
       </Grid>
       <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-        <IntegerTypography
-          array={array}
-          byteLength={byteLength}
-          signed={true} />
+        <IntegerTypography array={array} byteLength={byteLength} signed />
       </Grid>
       <Grid xs={is64Bit ? 12 : 6} sm={is64Bit ? 6 : false} item>
-        <IntegerTypography
-          array={array}
-          byteLength={byteLength}
-          signed={false} />
+        <IntegerTypography array={array} byteLength={byteLength} signed={false} />
       </Grid>
     </Grid>
   );
-}
+};
 
 Integer.propTypes = {
-  array: PropTypes.array.isRequired,
+  array: PropTypes.arrayOf(PropTypes.number).isRequired,
   byteLength: PropTypes.oneOf([2, 4, 8]).isRequired,
 };
 

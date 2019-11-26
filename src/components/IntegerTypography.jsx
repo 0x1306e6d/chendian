@@ -24,10 +24,11 @@ const signedThreshold = {
 };
 
 const IntegerTypography = ({ array, byteLength, signed }) => {
-  const readUnsignedInteger = () => array.reduce(
-    (acc, current, index) => acc.plus(new Big(current).times(powTable[byteLength - index - 1])),
-    new Big(0),
-  );
+  const readUnsignedInteger = () =>
+    array.reduce(
+      (acc, current, index) => acc.plus(new Big(current).times(powTable[byteLength - index - 1])),
+      new Big(0)
+    );
 
   const readSignedInteger = () => {
     const unsigned = readUnsignedInteger();
@@ -41,25 +42,15 @@ const IntegerTypography = ({ array, byteLength, signed }) => {
 
   const renderInteger = () => {
     if (signed) {
-      return (
-        <Typography variant="body1">
-          {readSignedInteger().toString()}
-        </Typography>
-      );
+      return <Typography variant="body1">{readSignedInteger().toString()}</Typography>;
     }
 
-    return (
-      <Typography variant="body1">
-        {readUnsignedInteger().toString()}
-      </Typography>
-    );
+    return <Typography variant="body1">{readUnsignedInteger().toString()}</Typography>;
   };
 
   return (
     <>
-      <Typography variant="overline">
-        {signed ? 'Signed' : 'Unsigned'}
-      </Typography>
+      <Typography variant="overline">{signed ? 'Signed' : 'Unsigned'}</Typography>
       {renderInteger()}
     </>
   );

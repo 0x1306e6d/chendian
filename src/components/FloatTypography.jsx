@@ -46,7 +46,12 @@ const FloatTypography = ({ array, byteLength }) => {
     return readFloatForwards();
   };
 
-  return <Typography variant="body1">{readFloat()}</Typography>;
+  const float = readFloat();
+  if (Number.isNaN(float)) {
+    return <Typography variant="body1">Not A Number</Typography>;
+  }
+
+  return <Typography variant="body1">{float}</Typography>;
 };
 
 FloatTypography.propTypes = {

@@ -9,30 +9,17 @@ endianTestBuffer[0] = 0xFF;
 endianTestBuffer[1] = 0x00;
 const isBigEndian = (endianTest[0] === 0x00FF);
 
-class FloatTypography extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.getFloatArray = this.getFloatArray.bind(this);
-    this.readFloatForwards = this.readFloatForwards.bind(this);
-    this.readFloatBackwards = this.readFloatBackwards.bind(this);
-    this.readFloat = this.readFloat.bind(this);
-  }
-
-  getFloatArray() {
-    const { byteLength } = this.props;
-
+const FloatTypography = ({ array, byteLength }) => {
+  const getFloatArray = () => {
     if (byteLength === 4) {
       return new Float32Array(1);
     } else {
       return new Float64Array(1);
     }
-  }
+  };
 
-  readFloatForwards() {
-    const { array, byteLength } = this.props;
-
-    const floatArray = this.getFloatArray();
+  const readFloatForwards = () => {
+    const floatArray = getFloatArray();
     const uint8Array = new Uint8Array(floatArray.buffer);
     for (let i = 0; i < byteLength; i++) {
       uint8Array[i] = array[i];
@@ -41,10 +28,8 @@ class FloatTypography extends React.Component {
     return floatArray[0];
   }
 
-  readFloatBackwards() {
-    const { array, byteLength } = this.props;
-
-    const floatArray = this.getFloatArray();
+  const readFloatBackwards = () => {
+    const floatArray = getFloatArray();
     const uint8Array = new Uint8Array(floatArray.buffer);
     for (let i = 0; i < byteLength; i++) {
       uint8Array[byteLength - i - 1] = array[i];
@@ -53,21 +38,19 @@ class FloatTypography extends React.Component {
     return floatArray[0];
   }
 
-  readFloat() {
+  const readFloat = () => {
     if (isBigEndian) {
-      return this.readFloatBackwards();
+      return readFloatBackwards();
     } else {
-      return this.readFloatForwards();
+      return readFloatForwards();
     }
   }
 
-  render() {
-    return (
-      <Typography variant="body1">
-        {this.readFloat()}
-      </Typography>
-    );
-  }
+  return (
+    <Typography variant="body1">
+      {readFloat()}
+    </Typography>
+  );
 }
 
 FloatTypography.propTypes = {

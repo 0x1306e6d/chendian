@@ -23,18 +23,8 @@ const signedThreshold = {
   8: new Big(2).pow(64 - 1),
 };
 
-class IntegerTypography extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.readUnsignedInteger = this.readUnsignedInteger.bind(this);
-    this.readSignedInteger = this.readSignedInteger.bind(this);
-    this.renderInteger = this.renderInteger.bind(this);
-  }
-
-  readUnsignedInteger() {
-    const { array, byteLength } = this.props;
-
+const IntegerTypography = ({ array, byteLength, signed }) => {
+  const readUnsignedInteger = () => {
     return array.reduce(
       (acc, current, index) => {
         return acc.plus(
@@ -43,49 +33,42 @@ class IntegerTypography extends React.Component {
       },
       new Big(0)
     );
-  }
+  };
 
-  readSignedInteger() {
-    const { byteLength } = this.props;
-    const unsigned = this.readUnsignedInteger();
+  const readSignedInteger = () => {
+    const unsigned = readUnsignedInteger();
 
     if (unsigned.gte(signedThreshold[byteLength])) {
       return unsigned.minus(powTable[byteLength]);
     } else {
       return unsigned;
     }
-  }
+  };
 
-  renderInteger() {
-    const { signed } = this.props;
-
+  const renderInteger = () => {
     if (signed) {
       return (
         <Typography variant="body1">
-          {this.readSignedInteger().toString()}
+          {readSignedInteger().toString()}
         </Typography>
       );
     } else {
       return (
         <Typography variant="body1">
-          {this.readUnsignedInteger().toString()}
+          {readUnsignedInteger().toString()}
         </Typography>
       );
     }
-  }
+  };
 
-  render() {
-    const { signed } = this.props;
-
-    return (
-      <React.Fragment>
-        <Typography variant="overline">
-          {signed ? 'Signed' : 'Unsigned'}
-        </Typography>
-        {this.renderInteger()}
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Typography variant="overline">
+        {signed ? 'Signed' : 'Unsigned'}
+      </Typography>
+      {renderInteger()}
+    </React.Fragment>
+  );
 }
 
 IntegerTypography.propTypes = {

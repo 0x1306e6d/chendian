@@ -61,53 +61,49 @@ const styles = (theme) => ({
 const IntegerSection = Section(Integer);
 const FloatSection = Section(Float);
 
-class App extends React.Component {
-  render() {
-    const { classes, version, input } = this.props;
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Navigation />
-        <Grid className={classes.layout} spacing={16} container>
-          <Grid xs={12} item>
-            <HexStringInput />
-          </Grid>
-          <Grid xs={12} item>
-            <IntegerSection
-              array={input}
-              byteLength={8}
-              title="64 bit integer" />
-          </Grid>
-          <Grid xs={12} item>
-            <IntegerSection
-              array={input}
-              byteLength={4}
-              title="32 bit integer" />
-          </Grid>
-          <Grid xs={12} item>
-            <IntegerSection
-              array={input}
-              byteLength={2}
-              title="16 bit integer" />
-          </Grid>
-          <Grid xs={12} item>
-            <FloatSection
-              array={input}
-              byteLength={8}
-              title="double" />
-          </Grid>
-          <Grid xs={12} item>
-            <FloatSection
-              array={input}
-              byteLength={4}
-              title="float" />
-          </Grid>
+const App = ({ classes, version, input }) => {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Navigation />
+      <Grid className={classes.layout} spacing={16} container>
+        <Grid xs={12} item>
+          <HexStringInput />
         </Grid>
-        <Footer version={version} />
-      </MuiThemeProvider>
-    );
-  }
+        <Grid xs={12} item>
+          <IntegerSection
+            array={input}
+            byteLength={8}
+            title="64 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <IntegerSection
+            array={input}
+            byteLength={4}
+            title="32 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <IntegerSection
+            array={input}
+            byteLength={2}
+            title="16 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <FloatSection
+            array={input}
+            byteLength={8}
+            title="double" />
+        </Grid>
+        <Grid xs={12} item>
+          <FloatSection
+            array={input}
+            byteLength={4}
+            title="float" />
+        </Grid>
+      </Grid>
+      <Footer version={version} />
+    </MuiThemeProvider>
+  );
 }
 
 App.propTypes = {

@@ -13,48 +13,48 @@ const FloatTypography = ({ array, byteLength }) => {
   const getFloatArray = () => {
     if (byteLength === 4) {
       return new Float32Array(1);
-    } else {
-      return new Float64Array(1);
     }
+
+    return new Float64Array(1);
   };
 
   const readFloatForwards = () => {
     const floatArray = getFloatArray();
     const uint8Array = new Uint8Array(floatArray.buffer);
-    for (let i = 0; i < byteLength; i++) {
+    for (let i = 0; i < byteLength; i += 1) {
       uint8Array[i] = array[i];
     }
 
     return floatArray[0];
-  }
+  };
 
   const readFloatBackwards = () => {
     const floatArray = getFloatArray();
     const uint8Array = new Uint8Array(floatArray.buffer);
-    for (let i = 0; i < byteLength; i++) {
+    for (let i = 0; i < byteLength; i += 1) {
       uint8Array[byteLength - i - 1] = array[i];
     }
 
     return floatArray[0];
-  }
+  };
 
   const readFloat = () => {
     if (isBigEndian) {
       return readFloatBackwards();
-    } else {
-      return readFloatForwards();
     }
-  }
+
+    return readFloatForwards();
+  };
 
   return (
     <Typography variant="body1">
       {readFloat()}
     </Typography>
   );
-}
+};
 
 FloatTypography.propTypes = {
-  array: PropTypes.array.isRequired,
+  array: PropTypes.arrayOf(PropTypes.number).isRequired,
   byteLength: PropTypes.oneOf([4, 8]).isRequired,
 };
 

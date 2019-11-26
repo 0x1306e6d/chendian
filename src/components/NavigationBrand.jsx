@@ -15,19 +15,20 @@ const styles = (theme) => ({
   },
 });
 
-const NavigationBrand = ({ classes }) => {
-  return (
-    <Button className={classes.root} color="inherit" component="a" href="/">
-      <ShuffleIcon className={classes.icon} color="inherit" />
-      <Typography color="inherit" component="h1" variant="h6">
-        chendian
-      </Typography>
-    </Button>
-  );
-}
+const NavigationBrand = ({ classes }) => (
+  <Button className={classes.root} color="inherit" component="a" href="/">
+    <ShuffleIcon className={classes.icon} color="inherit" />
+    <Typography color="inherit" component="h1" variant="h6">
+      chendian
+    </Typography>
+  </Button>
+);
 
 NavigationBrand.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    root: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(NavigationBrand);

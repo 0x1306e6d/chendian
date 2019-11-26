@@ -13,29 +13,22 @@ const styles = (theme) => ({
   },
 });
 
-const Footer = ({ classes, version }) => {
-  return (
-    <footer className={classes.root}>
-      <Typography
-        className={classes.typography}
-        align="center"
-        color="textPrimary"
-        variant="subtitle1">
-        {version}
-      </Typography>
-      <Typography
-        className={classes.typography}
-        align="center"
-        color="textPrimary"
-        variant="subtitle1">
-        Made by Gihwan Kim, Powered by GitHub Pages
-      </Typography>
-    </footer>
-  );
-}
+const Footer = ({ classes, version }) => (
+  <footer className={classes.root}>
+    <Typography className={classes.typography} align="center" color="textPrimary" variant="subtitle1">
+      {version}
+    </Typography>
+    <Typography className={classes.typography} align="center" color="textPrimary" variant="subtitle1">
+      Made by Gihwan Kim, Powered by GitHub Pages
+    </Typography>
+  </footer>
+);
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    root: PropTypes.string.isRequired,
+    typography: PropTypes.string.isRequired,
+  }).isRequired,
   version: PropTypes.string.isRequired,
 };
 

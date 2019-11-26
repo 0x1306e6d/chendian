@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 
 import { changeInput } from '../action/input';
 
-const validate = (hexText) => {
-  return /^[a-fA-F0-9\s]*$/.test(hexText);
-}
+const validate = (hexText) => /^[a-fA-F0-9\s]*$/.test(hexText);
 
 const HexStringInput = ({ change }) => {
   const [error, setError] = React.useState(false);
@@ -23,7 +22,7 @@ const HexStringInput = ({ change }) => {
       // convert to uppercase
       hexString = hexString.toUpperCase();
 
-      let byteArray = [];
+      const byteArray = [];
       for (let i = 0; i < hexString.length; i += 2) {
         const hex = hexString.slice(i, i + 2);
         const byte = parseInt(hex, 16);
@@ -34,24 +33,27 @@ const HexStringInput = ({ change }) => {
         setError(false);
       }
       change(byteArray);
-    } else {
-      if (error === false) {
-        setError(true);
-      }
+    } else if (error === false) {
+      setError(true);
     }
   };
 
   return (
     <TextField
       error={error}
-      helperText={error && "please enter the correct hex string."}
+      helperText={error && 'please enter the correct hex string.'}
       placeholder="please enter the hex string."
       variant="outlined"
       fullWidth
       multiline
-      onChange={handleChange} />
+      onChange={handleChange}
+    />
   );
-}
+};
+
+HexStringInput.propTypes = {
+  change: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   change: (input) => dispatch(changeInput(input)),

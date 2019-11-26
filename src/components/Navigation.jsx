@@ -21,9 +21,7 @@ const styles = (theme) => ({
   },
 });
 
-function Navigation(props) {
-  const { classes } = props;
-
+const Navigation = ({ classes }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static">

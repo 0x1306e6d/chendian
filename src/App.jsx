@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import Float from './components/Float';
 import Footer from './components/Footer';

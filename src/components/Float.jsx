@@ -7,7 +7,7 @@ import FloatTypography from './FloatTypography';
 import HexStringTypography from './HexStringTypography';
 
 const Float = ({ array, byteLength }) => (
-  <Grid spacing={16} container>
+  <Grid spacing={2} container>
     <Grid xs={12} item>
       <HexStringTypography array={array} />
     </Grid>

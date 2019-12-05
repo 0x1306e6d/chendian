@@ -64,7 +64,7 @@ const App = ({ classes, version, input }) => (
   <MuiThemeProvider theme={muiTheme}>
     <CssBaseline />
     <Navigation />
-    <Grid className={classes.layout} spacing={16} container>
+    <Grid className={classes.layout} spacing={2} container>
       <Grid xs={12} item>
         <HexStringInput />
       </Grid>

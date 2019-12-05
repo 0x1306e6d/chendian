@@ -10,7 +10,7 @@ const Integer = ({ array, byteLength }) => {
   const is64Bit = byteLength === 8;
 
   return (
-    <Grid spacing={16} container>
+    <Grid spacing={2} container>
       <Grid xs={12} item>
         <HexStringTypography array={array} />
       </Grid>

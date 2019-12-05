@@ -21,7 +21,7 @@ const Section = (TypeComponent) => {
           <Typography>{title}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Grid spacing={16} container>
+          <Grid spacing={2} container>
             <Grid xs={12} lg={6} item>
               <TypeEndiannessConverter array={array} byteLength={byteLength} endianness="big" />
             </Grid>

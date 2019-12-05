@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = (theme) => ({
   root: {
-    padding: theme.spacing.unit * 4,
+    padding: theme.spacing(4),
   },
   typography: {
     fontFamily:

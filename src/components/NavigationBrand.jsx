@@ -11,7 +11,7 @@ const styles = (theme) => ({
     textTransform: 'lowercase',
   },
   icon: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
 });
 

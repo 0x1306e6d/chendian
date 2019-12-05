@@ -31,10 +31,10 @@ const muiTheme = createMuiTheme({
 const styles = (theme) => ({
   layout: {
     width: 'auto',
-    paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up('sm')]: {
       width: '540px',
       marginLeft: 'auto',

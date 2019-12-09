@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
 import Float from './components/Float';
@@ -28,32 +29,9 @@ const muiTheme = createMuiTheme({
 });
 
 const styles = (theme) => ({
-  layout: {
-    width: 'auto',
+  root: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(2),
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up('sm')]: {
-      width: '540px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '720px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '960px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '1140px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
   },
 });
 
@@ -64,33 +42,35 @@ const App = ({ classes, version, input }) => (
   <MuiThemeProvider theme={muiTheme}>
     <CssBaseline />
     <Navigation />
-    <Grid className={classes.layout} spacing={2} container>
-      <Grid xs={12} item>
-        <HexStringInput />
+    <Container className={classes.root}>
+      <Grid container spacing={2}>
+        <Grid xs={12} item>
+          <HexStringInput />
+        </Grid>
+        <Grid xs={12} item>
+          <IntegerSection array={input} byteLength={8} title="64 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <IntegerSection array={input} byteLength={4} title="32 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <IntegerSection array={input} byteLength={2} title="16 bit integer" />
+        </Grid>
+        <Grid xs={12} item>
+          <FloatSection array={input} byteLength={8} title="double" />
+        </Grid>
+        <Grid xs={12} item>
+          <FloatSection array={input} byteLength={4} title="float" />
+        </Grid>
       </Grid>
-      <Grid xs={12} item>
-        <IntegerSection array={input} byteLength={8} title="64 bit integer" />
-      </Grid>
-      <Grid xs={12} item>
-        <IntegerSection array={input} byteLength={4} title="32 bit integer" />
-      </Grid>
-      <Grid xs={12} item>
-        <IntegerSection array={input} byteLength={2} title="16 bit integer" />
-      </Grid>
-      <Grid xs={12} item>
-        <FloatSection array={input} byteLength={8} title="double" />
-      </Grid>
-      <Grid xs={12} item>
-        <FloatSection array={input} byteLength={4} title="float" />
-      </Grid>
-    </Grid>
+    </Container>
     <Footer version={version} />
   </MuiThemeProvider>
 );
 
 App.propTypes = {
   classes: PropTypes.shape({
-    layout: PropTypes.string.isRequired,
+    root: PropTypes.string.isRequired,
   }).isRequired,
   version: PropTypes.string.isRequired,
   input: PropTypes.arrayOf(PropTypes.number).isRequired,

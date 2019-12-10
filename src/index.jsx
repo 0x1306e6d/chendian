@@ -9,7 +9,7 @@ import './App.css';
 import reducer from './reducer';
 import * as serviceWorker from './serviceWorker';
 
-const version = 'chendian 1.3.0-rc';
+const version = 'chendian 1.3.0';
 const store = createStore(reducer);
 
 ReactDOM.render(

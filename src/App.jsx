@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -28,50 +27,51 @@ const muiTheme = createMuiTheme({
   },
 });
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(2),
   },
-});
+}));
 
 const IntegerSection = Section(Integer);
 const FloatSection = Section(Float);
 
-const App = ({ classes, version, input }) => (
-  <MuiThemeProvider theme={muiTheme}>
-    <CssBaseline />
-    <Navigation />
-    <Container className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid xs={12} item>
-          <HexStringInput />
+const App = ({ version, input }) => {
+  const classes = useStyles();
+
+  return (
+    <MuiThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <Navigation />
+      <Container className={classes.root}>
+        <Grid container spacing={2}>
+          <Grid xs={12} item>
+            <HexStringInput />
+          </Grid>
+          <Grid xs={12} item>
+            <IntegerSection array={input} byteLength={8} title="64 bit integer" />
+          </Grid>
+          <Grid xs={12} item>
+            <IntegerSection array={input} byteLength={4} title="32 bit integer" />
+          </Grid>
+          <Grid xs={12} item>
+            <IntegerSection array={input} byteLength={2} title="16 bit integer" />
+          </Grid>
+          <Grid xs={12} item>
+            <FloatSection array={input} byteLength={8} title="double" />
+          </Grid>
+          <Grid xs={12} item>
+            <FloatSection array={input} byteLength={4} title="float" />
+          </Grid>
         </Grid>
-        <Grid xs={12} item>
-          <IntegerSection array={input} byteLength={8} title="64 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <IntegerSection array={input} byteLength={4} title="32 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <IntegerSection array={input} byteLength={2} title="16 bit integer" />
-        </Grid>
-        <Grid xs={12} item>
-          <FloatSection array={input} byteLength={8} title="double" />
-        </Grid>
-        <Grid xs={12} item>
-          <FloatSection array={input} byteLength={4} title="float" />
-        </Grid>
-      </Grid>
-    </Container>
-    <Footer version={version} />
-  </MuiThemeProvider>
-);
+      </Container>
+      <Footer version={version} />
+    </MuiThemeProvider>
+  );
+};
 
 App.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string.isRequired,
-  }).isRequired,
   version: PropTypes.string.isRequired,
   input: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => ({
   input: state.input,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(App));
+export default connect(mapStateToProps)(App);

@@ -22,9 +22,6 @@ const muiTheme = createMuiTheme({
       light: '#4F5B62',
     },
   },
-  typography: {
-    useNextVariants: true,
-  },
 });
 
 const useStyles = makeStyles((theme) => ({

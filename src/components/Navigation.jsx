@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import withStyles from '@material-ui/core/styles/withStyles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import GitHubIcon from './GitHubIcon';
 import NavigationBrand from './NavigationBrand';
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -19,27 +18,24 @@ const styles = (theme) => ({
   icon: {
     marginRight: theme.spacing(1),
   },
-});
+}));
 
-const Navigation = ({ classes }) => (
-  <div className={classes.root}>
-    <AppBar position="static">
-      <Toolbar>
-        <NavigationBrand />
-        <div className={classes.grow} />
-        <IconButton color="inherit" component="a" href="https://github.com/ghkim3221/chendian">
-          <GitHubIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  </div>
-);
+const Navigation = () => {
+  const classes = useStyles();
 
-Navigation.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string.isRequired,
-    grow: PropTypes.string.isRequired,
-  }).isRequired,
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <NavigationBrand />
+          <div className={classes.grow} />
+          <IconButton color="inherit" component="a" href="https://github.com/ghkim3221/chendian">
+            <GitHubIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 };
 
-export default withStyles(styles)(Navigation);
+export default Navigation;

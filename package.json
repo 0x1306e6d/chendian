@@ -22,7 +22,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",
-    "big.js": "^6.0.2",
+    "big.js": "^6.0.3",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",

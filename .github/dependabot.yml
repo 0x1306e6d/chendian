@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - ghkim3221
+  assignees:
+  - ghkim3221
+  labels:
+  - dependency
